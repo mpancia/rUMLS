@@ -2,9 +2,12 @@
 % Please edit documentation in R/concepts.R
 \name{get_concept_rels}
 \alias{get_concept_rels}
+\alias{get_concept_rels_page}
 \title{Get UMLS concept relations.}
 \usage{
-get_concept_rels(CUI, pageNumber = 1, pageSize = 25)
+get_concept_rels(CUI)
+
+get_concept_rels_page(CUI, pageNumber = 1, pageSize = 25)
 }
 \arguments{
 \item{pageSize}{}
