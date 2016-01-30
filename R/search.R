@@ -17,7 +17,7 @@ restBaseURL <- "https://uts-ws.nlm.nih.gov/"
 search_UMLS <- function(search, inputType = "sourceUi", includeObsolete = FALSE,
                         includeSuppressible = FALSE, sabs = NULL, searchType = "words")
 {
-  exhaust_search(search_UMLS_page, search = search, inputType = inputType, includeObsolete = includeObsolete,
+  exhaust_search(FUN = search_UMLS_page, PARSER = parse_search, search = search, inputType = inputType, includeObsolete = includeObsolete,
                 includeSuppressible = includeSuppressible, sabs = sabs, searchType = searchType)
 }
 
@@ -38,7 +38,7 @@ search_UMLS_page <- function(search, inputType = "sourceUi", includeObsolete = F
 parse_search <- function(result)
 {
   resContent <- content(result)
-  results <- resContent$result$results
+  results <- resContent$result
   if(results[[1]]$ui == "NONE")
   {
     NULL

@@ -2,12 +2,9 @@
 % Please edit documentation in R/concepts.R
 \name{get_concept_defs}
 \alias{get_concept_defs}
-\alias{get_concept_defs_page}
 \title{Get UMLS concept definitions.}
 \usage{
 get_concept_defs(CUI, sabs = NULL)
-
-get_concept_defs_page(CUI, sabs = NULL, pageNumber = 1, pageSize = 25)
 }
 \arguments{
 \item{CUI}{CUI of interest.}

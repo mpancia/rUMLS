@@ -3,6 +3,7 @@
 \name{get_concept_atoms}
 \alias{get_concept_atoms}
 \alias{get_concept_atoms_page}
+\alias{parse_atoms}
 \title{Get UMLS concept atoms.}
 \usage{
 get_concept_atoms(CUI, sabs = NULL, ttys = NULL, language = NULL,
@@ -11,6 +12,8 @@ get_concept_atoms(CUI, sabs = NULL, ttys = NULL, language = NULL,
 get_concept_atoms_page(CUI, sabs = NULL, ttys = NULL, language = NULL,
   includeObsolete = FALSE, includeSuppressible = FALSE, pageNumber = 1,
   pageSize = 25)
+
+parse_atoms(result)
 }
 \arguments{
 \item{CUI}{CUI of interest.}
