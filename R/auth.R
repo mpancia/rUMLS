@@ -1,4 +1,4 @@
-#' @importFrom httr POST
+#' @importFrom httr POST status_code
 #' @importFrom xml2 read_html
 #' @importFrom rvest html_nodes html_attr html_text
 authBaseURL <- "https://utslogin.nlm.nih.gov"
@@ -23,9 +23,16 @@ get_TGT <- function(name = NULL, pass = NULL)
     params <- list(username = name, password = pass)
     authURL <- paste0(authBaseURL, authEndpoint)
     r <- POST(url = authURL, body = params, encode = "form")
-    htmlResponse <- read_html(r)
-    TGT <- html_attr(html_nodes(htmlResponse, "form"), "action")
-    set_TGT(TGT)
+    if(status_code(r) == 201)
+    {
+      htmlResponse <- read_html(r)
+      TGT <- html_attr(html_nodes(htmlResponse, "form"), "action")
+      set_TGT(TGT)
+      message("Authenticated.")
+    } else
+    {
+      stop("Error authenticating.")
+    }
   } else if (is.null(TGT) && (is.null(name) | !is.null(pass)))
   {
     stop("No username/password provided.")
@@ -69,4 +76,23 @@ get_service_ticket <- function(TGT)
 set_service_ticket <- function(value)
 {
   umls_env$service_ticket <- value
+}
+
+#' Authenticate against UMLS.
+#'
+#' @return Returns nothing, sets user credentials for UMLS.
+#' @export
+#'
+#'
+auth_UMLS <- function()
+{
+  user <- readline("Enter username:")
+  pass <- readline("Enter password:")
+  if(!is.null(user) && !is.null(pass))
+  {
+    invisible(get_TGT(user, pass))
+  } else
+  {
+    stop("You did not enter a username and password.")
+  }
 }
