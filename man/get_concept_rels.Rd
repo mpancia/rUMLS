@@ -10,7 +10,7 @@ get_concept_rels(CUI)
 get_concept_rels_page(CUI, pageNumber = 1, pageSize = 25)
 }
 \arguments{
-\item{pageSize}{}
+\item{CUI}{}
 }
 \description{
 Get UMLS concept relations.
