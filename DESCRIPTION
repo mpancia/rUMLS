@@ -1,8 +1,18 @@
 Package: rUMLS
 Type: Package
-Title: What the Package Does (Title Case)
+Title: An R Interface To The NLM Unified Medical Language System
 Version: 0.1.0
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Authors@R: person("Matthew", "Pancia", email = "msp@themsp.org", role = c("aut", "cre"))
+Description: An R Interface To The NLM Unified Medical Language System.
+    This package provides search capabilities and functions to interact with the
+    graphical structure of the Metathesaurus.
+License: MIT
 LazyData: TRUE
+Imports:
+    dplyr,
+    httr,
+    xml2,
+    rvest
+URL: https://github.com/mpancia/rUMLS/
+BugReports: https://github.com/mpancia/rUMLS/issues
+RoxygenNote: 5.0.1
