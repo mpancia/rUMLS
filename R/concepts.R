@@ -10,7 +10,7 @@
 #'
 get_concept_rels <- function(CUI)
 {
-
+  exhaust_search(FUN = get_concept_rels_page, CUI = CUI)
 }
 
 #' @rdname get_concept_rels
