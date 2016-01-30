@@ -9,7 +9,13 @@ search_UMLS(search, inputType = "sourceUi", includeObsolete = FALSE,
   pageNumber = 1, pageSize = 25)
 }
 \arguments{
-\item{pageSize}{}
+\item{search}{Input to search.}
+
+\item{sabs}{Source vocabularies, comma delimited.}
+
+\item{pageNumber}{Page number for pagination.}
+
+\item{pageSize}{Size of page.}
 }
 \description{
 This searches the UMLS for concepts.

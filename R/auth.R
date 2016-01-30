@@ -18,14 +18,16 @@ umls_env <- new.env(parent = emptyenv())
 get_TGT <- function(name = NULL, pass = NULL)
 {
   TGT <- umls_env$TGT
-  if (is.null(TGT) && !is.null(name) && !is.null(pass)){
+  if (is.null(TGT) && !is.null(name) && !is.null(pass))
+  {
     params <- list(username = name, password = pass)
     authURL <- paste0(authBaseURL, authEndpoint)
     r <- POST(url = authURL, body = params, encode = "form")
     htmlResponse <- read_html(r)
     TGT <- html_attr(html_nodes(htmlResponse, "form"), "action")
     set_TGT(TGT)
-  } else if (is.null(TGT) && (is.null(name) | !is.null(pass))) {
+  } else if (is.null(TGT) && (is.null(name) | !is.null(pass)))
+  {
     stop("No username/password provided.")
   }
 

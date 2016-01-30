@@ -1,25 +1,63 @@
-#' @importFrom httr GET
-#' @importFrom xml2 read_html
-#' @importFrom rvest html_nodes html_attr html_text
-restBaseURL <- "https://uts-ws.nlm.nih.gov/rest"
+#' @importFrom httr GET content
+restBaseURL <- "https://uts-ws.nlm.nih.gov/"
 
 #' Search the UMLS.
 #'
 #' This searches the UMLS for concepts.
 #'
-#' @param search
+#' @param search Input to search.
 #' @param inputType
 #' @param includeObsolete
 #' @param includeSuppressible
-#' @param sabs
+#' @param sabs Source vocabularies, comma delimited.
 #' @param searchType
-#' @param pageNumber
-#' @param pageSize
+#'
+#' @export
 #'
 search_UMLS <- function(search, inputType = "sourceUi", includeObsolete = FALSE,
-  includeSuppressible = FALSE, sabs = NULL, searchType = 'words', pageNumber = 1,
-  pageSize = 25){
-  params <- list(ticket = ticket, search = search, includeObsolete = includeObsolete, includeSuppressible = includeSuppressible, sabs = sabs, searchType = searchType, pageNumber = pageNumber, pageSize = pageSize)
-  r <- GET(restBaseURL, path = "search/current", query = params)
+                        includeSuppressible = FALSE, sabs = NULL, searchType = "words")
+{
+  results <- list()
+  curPage <- 1
+  keepSearching <- TRUE
+  while(keepSearching == TRUE)
+  {
+    curResult <- parse_search(search_UMLS_page(search, inputType, includeObsolete, includeSuppressible, sabs, searchType, pageNumber = curPage))
+    if(!is.null(curResult))
+    {
+      results <- c(results, curResult)
+      curPage <- curPage + 1
+    } else
+    {
+      keepSearching <- FALSE
+    }
+  }
+  unlist(results)
+}
+
+#' @rdname search_UMLS
+search_UMLS_page <- function(search, inputType = "sourceUi", includeObsolete = FALSE,
+                        includeSuppressible = FALSE, sabs = NULL, searchType = "words", pageNumber = 1,
+                        pageSize = 25)
+{
+  ticket <- get_service_ticket(get_TGT())
+  params <- list(ticket = ticket, string = search, includeObsolete = includeObsolete,
+    includeSuppressible = includeSuppressible, sabs = sabs, searchType = searchType,
+    pageNumber = pageNumber, pageSize = pageSize)
+  r <- GET(restBaseURL, path = "rest/search/current", query = params)
   r
+}
+
+#' @rdname search_UMLS
+parse_search <- function(result)
+{
+  resContent <- content(result)
+  results <- resContent$result$results
+  if(results[[1]]$ui == "NONE")
+  {
+    NULL
+  } else
+  {
+    results
+  }
 }
