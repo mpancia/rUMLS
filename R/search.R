@@ -38,7 +38,7 @@ search_UMLS_page <- function(search, inputType = "sourceUi", includeObsolete = F
 parse_search <- function(result)
 {
   resContent <- content(result)
-  results <- resContent$result
+  results <- resContent$result$results
   if(results[[1]]$ui == "NONE")
   {
     NULL
