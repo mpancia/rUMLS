@@ -40,6 +40,8 @@ setClass("Concept", representation(
 
 setClass("Relation", representation(
   rui = "character",
+  headui = "charOrNULL",
+  tailui = "charOrNULL",
   suppressible = "logical",
   sourceui = "charOrNULL",
   obsolete = "logical",

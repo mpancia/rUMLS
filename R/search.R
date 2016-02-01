@@ -1,5 +1,4 @@
 #' @importFrom httr GET content
-restBaseURL <- "https://uts-ws.nlm.nih.gov/"
 
 #' Search the UMLS.
 #'

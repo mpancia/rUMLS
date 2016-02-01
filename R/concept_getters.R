@@ -59,10 +59,6 @@ get_concept_atoms_page <- function(CUI, sabs = NULL, ttys = NULL, language = NUL
   r
 }
 
-
-
-
-
 #' Get UMLS concept info
 #
 #'
@@ -80,6 +76,9 @@ get_concept_info <- function(CUI)
   parse_results(r)
 }
 
+#'
+#'
+#' @export
 get_concept <- function(CUI)
 {
   info <- get_concept_info(CUI)
@@ -104,10 +103,11 @@ get_concept <- function(CUI)
   name <- info$name
   rels <- get_concept_rels(CUI)
   atoms <- get_concept_atoms(CUI)
+  rels <- sapply(rels, function(rel) {attr(rel, "headui") <- CUI; rel} )
   concept <- new("Concept", cui = CUI, suppressible = suppressible, dateAdded = dateAdded,
                  majorRevisionDate = majorRevisionDate, status = status, atomCount = atomCount,
                  attributeCount = attributeCount, cvMemberCount = cvMemberCount, atomsURL = atomsURL,
-                 definitionsURL = definitionsURL, relationsURL = relationsURL,
+                 definitionsURL = definitions, relationsURL = relationsURL,
                  preferredAtom = preferredAtom, relationCount = relationCount, name = name,
                  relations = rels,  atoms = atoms)
 }
