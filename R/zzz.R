@@ -1,4 +1,4 @@
-#' @importFrom httr POST status_code
+#' @importFrom httr POST status_code content
 #' @importFrom xml2 read_html
 #' @importFrom rvest html_nodes html_attr html_text
 

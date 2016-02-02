@@ -1,16 +1,5 @@
-#' Search the UMLS.
-#'
-#' This searches the UMLS for concepts.
-#'
-#' @param search Input to search.
-#' @param inputType
-#' @param includeObsolete
-#' @param includeSuppressible
-#' @param sabs Source vocabularies, comma delimited.
-#' @param searchType
-#'
+
 #' @export
-#'
 search_UMLS <- function(search, inputType = "sourceUi", includeObsolete = FALSE,
                         includeSuppressible = FALSE, sabs = NULL, searchType = "words")
 {
@@ -18,7 +7,6 @@ search_UMLS <- function(search, inputType = "sourceUi", includeObsolete = FALSE,
                 includeSuppressible = includeSuppressible, sabs = sabs, searchType = searchType)
 }
 
-#' @rdname search_UMLS
 search_UMLS_page <- function(search, inputType = "sourceUi", includeObsolete = FALSE,
                         includeSuppressible = FALSE, sabs = NULL, searchType = "words", pageNumber = 1,
                         pageSize = 25)
@@ -31,7 +19,6 @@ search_UMLS_page <- function(search, inputType = "sourceUi", includeObsolete = F
   r
 }
 
-#' @rdname search_UMLS
 parse_search <- function(result)
 {
   resContent <- content(result)

@@ -18,3 +18,15 @@ Imports:
 URL: https://github.com/mpancia/rUMLS/
 BugReports: https://github.com/mpancia/rUMLS/issues
 RoxygenNote: 5.0.1
+Collate:
+    'auth.R'
+    'class_defs.R'
+    'generics.R'
+    'concept.R'
+    'rUMLS.R'
+    'relations.R'
+    'search.R'
+    'sources.R'
+    'subsets.R'
+    'utils.R'
+    'zzz.R'
