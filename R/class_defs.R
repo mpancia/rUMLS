@@ -31,6 +31,7 @@ setClass("Concept", representation(
   atomsURL = "character",
   definitionsURL = "charOrNULL",
   relationsURL = "character",
+  semanticTypes = "list",
   preferredAtom = "Atom",
   relationCount = "numeric",
   name = "character",

@@ -12,7 +12,9 @@ Imports:
     dplyr,
     httr,
     xml2,
-    rvest
+    rvest,
+    stringr,
+    assertthat
 URL: https://github.com/mpancia/rUMLS/
 BugReports: https://github.com/mpancia/rUMLS/issues
 RoxygenNote: 5.0.1

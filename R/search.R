@@ -1,5 +1,3 @@
-#' @importFrom httr GET content
-
 #' Search the UMLS.
 #'
 #' This searches the UMLS for concepts.

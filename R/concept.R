@@ -1,68 +1,141 @@
-setGeneric("ui", function(c)
+#' Get unique identifier.
+#'
+#' @param x
+#'
+#' @return
+#' @export
+#'
+#' @examples
+setGeneric("ui", function(x)
 {
   standardGeneric("ui")
 }
 )
 
-setMethod("ui", signature(c = "Concept"), function(c)
+#' Title
+#'
+#' @param x Concept.
+#'
+#' @return
+#' @export
+#'
+#' @examples
+setMethod("ui", signature(x = "Concept"), function(x)
 {
-  c@cui
+  x@cui
 }
 )
-setMethod("ui", signature(c = "Atom"), function(c)
+setMethod("ui", signature(x = "Atom"), function(x)
 {
-  c@aui
+  x@aui
 }
 )
-setMethod("ui", signature(c = "Relation"), function(c)
+setMethod("ui", signature(x = "Relation"), function(x)
 {
-  c@rui
+  x@rui
 }
 )
 
-setGeneric("synonyms", function(c)
+#' Title
+#'
+#' @param x
+#'
+#' @return
+#' @export
+#'
+#' @examples
+setGeneric("synonyms", function(x)
 {
  standardGeneric("synonyms")
 }
 )
 
-setMethod("synonyms", signature(c = "Concept"), function(c)
+setMethod("synonyms", signature(x = "Concept"), function(x)
 {
-  atoms <- c@atoms
+  atoms <- x@atoms
   unique(sapply(atoms, function(atom) attr(atom, "name")))
 }
 )
 
-setGeneric("relations", function(c)
+#' Title
+#'
+#' @param x
+#'
+#' @return
+#' @export
+#'
+#' @examples
+setGeneric("relations", function(x)
 {
   standardGeneric("relations")
 }
 )
 
-setMethod("relations", signature(c = "Concept"), function(c)
+setMethod("relations", signature(x = "Concept"), function(x)
 {
- c@relations
+ x@relations
 }
 )
 
-setGeneric("headui", function(c)
+#' Title
+#'
+#' @param x
+#'
+#' @return
+#' @export
+#'
+#' @examples
+setGeneric("headui", function(x)
 {
   standardGeneric("headui")
 })
 
-setMethod("headui", signature(c = "Relation"), function(c)
+setMethod("headui", signature(x = "Relation"), function(x)
 {
-  c@headui
+  x@headui
 }
 )
 
-setGeneric("tailui", function(c)
+#' Title
+#'
+#' @param x
+#'
+#' @return
+#' @export
+#'
+#' @examples
+setGeneric("tailui", function(x)
 {
   standardGeneric("tailui")
 }
 )
-setMethod("tailui", signature(c = "Relation"), function(c)
+setMethod("tailui", signature(x = "Relation"), function(x)
 {
-  c@tailui
+  x@tailui
+}
+)
+
+#' Title
+#'
+#' @param x
+#'
+#' @return
+#' @export
+#'
+#' @examples
+setGeneric("related", function(x)
+{
+  standardGeneric("related")
+}
+)
+
+setMethod("related", signature(x = "Concept"), function(x)
+{
+  relationships <- relations(x)
+  otherTails <- sapply(relationships, headui)
+  otherHeads <- sapply(relationships, tailui)
+  otherUIs <- unique(c(otherTails, otherHeads))
+  otherConcepts <- lapply(otherUIs, get_concept)
+  otherConcepts
 }
 )

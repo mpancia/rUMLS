@@ -1,6 +1,6 @@
-#' @importFrom httr POST status_code
-#' @importFrom xml2 read_html
-#' @importFrom rvest html_nodes html_attr html_text
+
+authBaseURL <- "https://utslogin.nlm.nih.gov"
+authEndpoint <- "/cas/v1/tickets"
 
 umls_env <- new.env(parent = emptyenv())
 

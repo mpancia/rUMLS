@@ -76,12 +76,17 @@ get_concept_info <- function(CUI)
   parse_results(r)
 }
 
+
+#' Get Concept
 #'
+#' @param CUI
 #'
+#' @return
 #' @export
-get_concept <- function(CUI)
-{
+#'
+get_concept <- function(CUI) {
   info <- get_concept_info(CUI)
+  semanticTypes <- info$semanticTypes
   suppressible <- info$suppressible
   dateAdded <- as.Date(info$dateAdded, format = '%m-%d-%y')
   majorRevisionDate <- as.Date(info$majorRevisionDate, format = '%m-%d-%y')
@@ -107,7 +112,7 @@ get_concept <- function(CUI)
   concept <- new("Concept", cui = CUI, suppressible = suppressible, dateAdded = dateAdded,
                  majorRevisionDate = majorRevisionDate, status = status, atomCount = atomCount,
                  attributeCount = attributeCount, cvMemberCount = cvMemberCount, atomsURL = atomsURL,
-                 definitionsURL = definitions, relationsURL = relationsURL,
+                 definitionsURL = definitions, relationsURL = relationsURL, semanticTypes= semanticTypes,
                  preferredAtom = preferredAtom, relationCount = relationCount, name = name,
                  relations = rels,  atoms = atoms)
 }
