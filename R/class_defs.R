@@ -1,5 +1,5 @@
 setClassUnion("charOrNULL", c("character", "NULL"))
-
+setClassUnion("listOrNULL", c("list", "NULL"))
 setClass("Atom", representation(
  aui = "character",
  suppressible = "logical",
@@ -35,8 +35,8 @@ setClass("Concept", representation(
   preferredAtom = "Atom",
   relationCount = "numeric",
   name = "character",
-  atoms = "list",
-  relations = "list"
+  atoms = "listOrNULL",
+  relations = "listOrNULL"
 ))
 
 setClass("Relation", representation(

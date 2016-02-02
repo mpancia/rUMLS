@@ -80,7 +80,7 @@ get_concept_info <- function(CUI)
 #' @return
 #' @export
 #'
-setMethod("get_concept", signature(x = "character"), function(x) {
+setMethod("get_concept", signature(x = "character"), function(x, info_ret = "none") {
   info <- get_concept_info(x)
   semanticTypes <- info$semanticTypes
   suppressible <- info$suppressible
@@ -102,9 +102,26 @@ setMethod("get_concept", signature(x = "character"), function(x) {
   preferredAtom <- get_pref_atom(x)
   relationCount <- as.numeric(info$relationCount)
   name <- info$name
-  rels <- get_concept_rels(x)
-  atoms <- get_concept_atoms(x)
-  rels <- sapply(rels, function(rel) {attr(rel, "headui") <- x; rel} )
+  if(info_ret == "none")
+  {
+    rels <- NULL
+    atoms <- NULL
+  } else if(info_ret == "atoms")
+  {
+    rels <- NULL
+    atoms <- get_concept_atoms(x)
+  } else if(info_ret == "rels")
+  {
+    atoms <- NULL
+    rels <- get_concept_rels(x)
+    rels <- sapply(rels, function(rel) {attr(rel, "headui") <- x; rel} )
+  } else
+  {
+    atoms <- get_concept_atoms(x)
+    rels <- get_concept_rels(x)
+    rels <- sapply(rels, function(rel) {attr(rel, "headui") <- x; rel} )
+  }
+
   concept <- new("Concept", cui = x, suppressible = suppressible, dateAdded = dateAdded,
                  majorRevisionDate = majorRevisionDate, status = status, atomCount = atomCount,
                  attributeCount = attributeCount, cvMemberCount = cvMemberCount, atomsURL = atomsURL,
@@ -159,6 +176,9 @@ setMethod("synonyms", signature(x = "Concept"), function(x)
 setMethod("neighborhood", signature(x = "Concept"), function(x)
 {
   edges <- relations(x)
+  other_node_ids <- sapply(edges, tailui)
+  other_nodes <- lapply(other_node_ids, get_concept)
+
 }
 )
 

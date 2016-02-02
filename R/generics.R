@@ -94,7 +94,7 @@ setGeneric("related", function(x)
 #' @export
 #'
 #' @examples
-setGeneric("get_concept", function(x)
+setGeneric("get_concept", function(x, info_ret = "none")
 {
  standardGeneric("get_concept")
 }

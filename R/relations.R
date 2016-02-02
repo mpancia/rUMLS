@@ -18,6 +18,15 @@ setMethod("source_vocab", signature(x = "Relation"), function(x)
 }
 )
 
+#' Get a relation label.
+#'
+#' @param rel
+#' @param type
+#'
+#' @return
+#' @export
+#'
+#' @examples
 relation_label <- function(rel, type = "primary")
 {
   if(type == "primary")
@@ -28,4 +37,27 @@ relation_label <- function(rel, type = "primary")
   {
     rel@additionalRelationLabel
   }
+}
+
+#' Convert a list of relations to an edgelist.
+#'
+#' @param rels
+#'
+#' @return
+#' @export
+#'
+#' @examples
+as.edge.df <- function(rels)
+{
+  tails <- sapply(rels, tailui)
+  heads <- sapply(rels, headui)
+  sources <- sapply(rels, source_vocab)
+  relation_labels <- sapply(rels, relation_label)
+  data.frame(tails = tails, heads = heads, sources = sources, relation_labels = relation_labels)
+}
+
+rels.as.graph <- function(rels)
+{
+  edge_df <- as.edge.df(rels)
+  graph_from_data_frame(edge_df)
 }

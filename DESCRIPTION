@@ -14,7 +14,7 @@ Imports:
     xml2,
     rvest,
     stringr,
-    assertthat
+    igraph
 URL: https://github.com/mpancia/rUMLS/
 BugReports: https://github.com/mpancia/rUMLS/issues
 RoxygenNote: 5.0.1
