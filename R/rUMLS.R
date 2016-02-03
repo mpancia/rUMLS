@@ -6,4 +6,4 @@
 #' @aliases rUMLS
 #' @docType package
 #' @import assertthat
-NULL
+NULL 

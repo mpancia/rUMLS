@@ -6,33 +6,25 @@
 #' @export
 #'
 #' @examples
-setGeneric("ui", function(x)
-{
-  standardGeneric("ui")
-}
-)
+setGeneric("ui", function(x) {
+    standardGeneric("ui")
+})
 
 
-setMethod("ui", signature(x = "Atom"), function(x)
-{
-  x@aui
-}
-)
-setMethod("ui", signature(x = "Relation"), function(x)
-{
-  x@rui
-}
-)
+setMethod("ui", signature(x = "Atom"), function(x) {
+    x@aui
+})
+setMethod("ui", signature(x = "Relation"), function(x) {
+    x@rui
+})
 
 
 #' @export
 #'
 #' @examples
-setGeneric("synonyms", function(x)
-{
- standardGeneric("synonyms")
-}
-)
+setGeneric("synonyms", function(x) {
+    standardGeneric("synonyms")
+})
 
 
 
@@ -40,24 +32,19 @@ setGeneric("synonyms", function(x)
 #' @export
 #'
 #' @examples
-setGeneric("relations", function(x)
-{
-  standardGeneric("relations")
-}
-)
+setGeneric("relations", function(x) {
+    standardGeneric("relations")
+})
 
-setMethod("relations", signature(x = "Concept"), function(x)
-{
- x@relations
-}
-)
+setMethod("relations", signature(x = "Concept"), function(x) {
+    x@relations
+})
 
 #' @export
 #'
 #' @examples
-setGeneric("headui", function(x)
-{
-  standardGeneric("headui")
+setGeneric("headui", function(x) {
+    standardGeneric("headui")
 })
 
 
@@ -70,11 +57,9 @@ setGeneric("headui", function(x)
 #' @export
 #'
 #' @examples
-setGeneric("tailui", function(x)
-{
-  standardGeneric("tailui")
-}
-)
+setGeneric("tailui", function(x) {
+    standardGeneric("tailui")
+})
 
 #' Title
 #'
@@ -84,38 +69,30 @@ setGeneric("tailui", function(x)
 #' @export
 #'
 #' @examples
-setGeneric("related", function(x)
-{
-  standardGeneric("related")
-}
-)
+setGeneric("related", function(x) {
+    standardGeneric("related")
+})
 
 
 #' @export
 #'
 #' @examples
-setGeneric("get_concept", function(x, info_ret = "none")
-{
- standardGeneric("get_concept")
-}
-)
+setGeneric("get_concept", function(x, info_ret = "none") {
+    standardGeneric("get_concept")
+})
 
 
 #' @export
 #'
 #' @examples
-setGeneric("neighborhood", function(x)
-{
-  standardGeneric("neighborhood")
-}
-)
+setGeneric("neighborhood", function(x) {
+    standardGeneric("neighborhood")
+})
 
 #' @export
-setGeneric("source_vocab", function(x)
-{
-  standardGeneric("source_vocab")
-}
-)
+setGeneric("source_vocab", function(x) {
+    standardGeneric("source_vocab")
+})
 
 #' Get labels for relationship.
 #'
@@ -125,8 +102,6 @@ setGeneric("source_vocab", function(x)
 #' @return
 #' @export
 #'
-setGeneric("relation_label", function(rel, type)
-{
- standardGeneric("relation_label")
-}
-)
+setGeneric("relation_label", function(rel, type) {
+    standardGeneric("relation_label")
+}) 
