@@ -1,4 +1,12 @@
 #' @include generics.R
+#' @include class_defs.R
+NULL
+
+
+
+setMethod("ui", signature(x = "Relation"), function(x) {
+  x@rui
+})
 
 setMethod("tailui", signature(x = "Relation"), function(x) {
     x@tailui
@@ -64,4 +72,4 @@ as.edge.df <- function(rels) {
 rels.as.graph <- function(rels) {
     edge_df <- as.edge.df(rels)
     graph_from_data_frame(edge_df)
-} 
+}

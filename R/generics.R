@@ -11,13 +11,6 @@ setGeneric("ui", function(x) {
 })
 
 
-setMethod("ui", signature(x = "Atom"), function(x) {
-    x@aui
-})
-setMethod("ui", signature(x = "Relation"), function(x) {
-    x@rui
-})
-
 
 #' @export
 #'
@@ -36,9 +29,6 @@ setGeneric("relations", function(x) {
     standardGeneric("relations")
 })
 
-setMethod("relations", signature(x = "Concept"), function(x) {
-    x@relations
-})
 
 #' @export
 #'
@@ -104,4 +94,4 @@ setGeneric("source_vocab", function(x) {
 #'
 setGeneric("relation_label", function(rel, type) {
     standardGeneric("relation_label")
-}) 
+})

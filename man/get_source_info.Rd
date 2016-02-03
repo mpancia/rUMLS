@@ -2,12 +2,9 @@
 % Please edit documentation in R/sources.R
 \name{get_source_info}
 \alias{get_source_info}
-\alias{get_source_info_page}
 \title{Get UMLS source info for a concept.}
 \usage{
 get_source_info(source, id)
-
-get_source_info_page(source, id, pageNumber = 1, pageSize = 25)
 }
 \arguments{
 \item{source}{Source vocabulary.}
