@@ -189,4 +189,8 @@ setMethod("neighborhood", signature(x = "character"), function(x)
 }
 )
 
+diseases <- function(concept)
+{
+  nbhd <- neighborhood(concept)
 
+}

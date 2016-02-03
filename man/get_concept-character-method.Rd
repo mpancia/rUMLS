@@ -5,7 +5,7 @@
 \alias{get_concept,character-method}
 \title{Get Concept}
 \usage{
-\S4method{get_concept}{character}(x, y = "none")
+\S4method{get_concept}{character}(x, info_ret = "none")
 }
 \arguments{
 \item{x}{}

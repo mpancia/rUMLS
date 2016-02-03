@@ -6,15 +6,33 @@ setMethod("tailui", signature(x = "Relation"), function(x)
 }
 )
 
+setMethod("tailui", signature(x = "list"), function(x)
+{
+  sapply(x, tailui)
+}
+)
+
 setMethod("headui", signature(x = "Relation"), function(x)
 {
   x@headui
 }
 )
 
+setMethod("headui", signature(x = "list"), function(x)
+{
+  sapply(x, headui)
+}
+)
+
 setMethod("source_vocab", signature(x = "Relation"), function(x)
 {
   x@rootSource
+}
+)
+
+setMethod("source_vocab", signature(x = "list"), function(x)
+{
+  sapply(x, source_vocab)
 }
 )
 
@@ -27,7 +45,7 @@ setMethod("source_vocab", signature(x = "Relation"), function(x)
 #' @export
 #'
 #' @examples
-relation_label <- function(rel, type = "primary")
+setMethod("relation_label", signature(rel = "Relation"), function(rel, type = "primary")
 {
   if(type == "primary")
   {
@@ -38,6 +56,13 @@ relation_label <- function(rel, type = "primary")
     rel@additionalRelationLabel
   }
 }
+)
+
+setMethod("relation_label", signature(rel = "list"), function(rel, type = "primary")
+{
+ sapply(rel, relation_label, type = type)
+}
+)
 
 #' Convert a list of relations to an edgelist.
 #'

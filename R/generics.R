@@ -116,3 +116,17 @@ setGeneric("source_vocab", function(x)
   standardGeneric("source_vocab")
 }
 )
+
+#' Get labels for relationship.
+#'
+#' @param rel
+#' @param type
+#'
+#' @return
+#' @export
+#'
+setGeneric("relation_label", function(rel, type)
+{
+ standardGeneric("relation_label")
+}
+)
