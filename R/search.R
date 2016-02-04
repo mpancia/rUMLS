@@ -1,8 +1,13 @@
 
 #' @export
-search_UMLS <- function(search, inputType = "sourceUi", includeObsolete = FALSE, includeSuppressible = FALSE, sabs = NULL, searchType = "words") {
-    exhaust_search(FUN = search_UMLS_page, PARSER = parse_search, search = search, inputType = inputType, includeObsolete = includeObsolete, includeSuppressible = includeSuppressible,
+search_UMLS <- function(search, inputType = "sourceUi", includeObsolete = FALSE, includeSuppressible = FALSE, sabs = NULL, searchType = "words", response_type = "list") {
+    results <- exhaust_search(FUN = search_UMLS_page, PARSER = parse_search, search = search, inputType = inputType, includeObsolete = includeObsolete, includeSuppressible = includeSuppressible,
         sabs = sabs, searchType = searchType)
+    if(response_type == "list") {
+      results
+    } else {
+      lapply(results, function(x) get_concept(x, info_ret = response_type ))
+    }
 }
 
 search_UMLS_page <- function(search, inputType = "sourceUi", includeObsolete = FALSE, includeSuppressible = FALSE, sabs = NULL, searchType = "words",
