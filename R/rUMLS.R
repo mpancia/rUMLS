@@ -5,4 +5,4 @@
 #' @name rUMLS
 #' @aliases rUMLS
 #' @docType package
-NULL
+NULL 

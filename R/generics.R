@@ -94,4 +94,4 @@ setGeneric("source_vocab", function(x) {
 #'
 setGeneric("relation_label", function(rel, type) {
     standardGeneric("relation_label")
-})
+}) 
