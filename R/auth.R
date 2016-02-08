@@ -30,7 +30,7 @@ get_TGT <- function(name = NULL, pass = NULL) {
     } else if (is.null(TGT) && (is.null(name) | !is.null(pass))) {
         stop("No username/password provided.")
     }
-    
+
     TGT
 }
 
@@ -72,12 +72,16 @@ set_service_ticket <- function(value) {
 #' @export
 #'
 #'
-auth_UMLS <- function() {
-    user <- readline("Enter username:")
-    pass <- readline("Enter password:")
+auth_UMLS <- function(user = NULL, pass = NULL) {
+    if(is.null(user)){
+      user <- readline("Enter username:")
+    }
+    if(is.null(pass)){
+      pass <- readline("Enter password:")
+      }
     if (!is.null(user) && !is.null(pass)) {
         invisible(get_TGT(user, pass))
     } else {
         stop("You did not enter a username and password.")
     }
-} 
+}

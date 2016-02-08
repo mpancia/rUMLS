@@ -15,7 +15,7 @@ setGeneric("ui", function(x) {
 #' @export
 #'
 #' @examples
-setGeneric("synonyms", function(x) {
+setGeneric("synonyms", function(x, ...) {
     standardGeneric("synonyms")
 })
 
@@ -94,4 +94,4 @@ setGeneric("source_vocab", function(x) {
 #'
 setGeneric("relation_label", function(rel, type) {
     standardGeneric("relation_label")
-}) 
+})
