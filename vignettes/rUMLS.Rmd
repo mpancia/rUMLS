@@ -1,0 +1,26 @@
+---
+title: "rUMLS"
+author: "Matthew Pancia"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+## Introduction 
+
+rUMLS is an interface to the National Library of Medicine's [Unified Medicial Language System](https://www.nlm.nih.gov/research/umls/). The UMLS provides a way of linking many disparate medical vocabularies into a single graph, allowing for the unification of concepts and relations across these vocabularies. 
+
+There are several ways of accessing the UMLS: 
+
+* The [web interface](https://uts.nlm.nih.gov/home.html) provided by the NLM;
+* The [REST API](https://documentation.uts.nlm.nih.gov/rest/home.html);
+* The [SOAP API](https://documentation.uts.nlm.nih.gov/soap/home.html);
+* A [download](https://www.nlm.nih.gov/research/umls/licensedcontent/downloads.html) of the underlying data, which allows for the creation of SQL load scripts.
+
+The goal of this package is to provide an abstracted interface to the REST API provided by the NLM, making it easy to search for concepts, access relationships, and get other information like synonyms/translations/etc. Eventually, plotting tools and helper functions to understand the graphical structure will be added. 
+
+## Structure of the UMLS
+
+## Examples
