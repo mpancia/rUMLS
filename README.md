@@ -10,6 +10,12 @@ This currently can only be installed from github:
 devtools::install_github("mpancia/rUMLS")
 ```
 
+You can learn how to use the package by running the vignette: 
+
+```R
+vignette("rUMLS", "rUMLS")
+```
+
 ## Authentication
 
 You need an NLM license in order to use this package. Obtain one at [the NLM site](https://uts.nlm.nih.gov/home.html#). 
@@ -20,3 +26,5 @@ You need an NLM license in order to use this package. Obtain one at [the NLM sit
 * [API Reference](https://www.nlm.nih.gov/api/)
 * [UMLS Login](https://www.nlm.nih.gov/research/umls/)
 * [UMLS Quickstart Login](https://www.nlm.nih.gov/research/umls/quickstart.html)
+* [Relationship Type Reference](https://www.nlm.nih.gov/research/umls/knowledge_sources/metathesaurus/release/abbreviations.html)
+browseVignettes(package = 'rUMLS')
