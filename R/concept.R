@@ -164,6 +164,8 @@ setMethod("relations", signature(x = "list"), function(x) {
 setMethod("synonyms", signature(x = "Concept"), function(x, ...) {
     atoms <- x@atoms
     if(hasArg("language")){
+      args <- list(...)
+      language <- args$language
       atoms <- atoms[sapply(atoms, function(x) x@language == language)]
     }
     unique(sapply(atoms, function(atom) attr(atom, "name")))
