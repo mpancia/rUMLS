@@ -175,12 +175,15 @@ setMethod("synonyms", signature(x = "list"), function(x, ...) {
     lapply(x, synonyms, ...)
 })
 
+setMethod("desc", signature(x = "Concept"), function(x) {
+  x@name
+})
+
 setMethod("neighborhood", signature(x = "Concept"), function(x) {
     edges <- relations(x)
     other_node_ids <- sapply(edges, tailui)
     other_nodes <- lapply(other_node_ids, get_concept)
 })
-
 
 
 setMethod("neighborhood", signature(x = "character"), function(x) {

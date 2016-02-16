@@ -1,15 +1,20 @@
 #' Get unique identifier.
 #'
-#' @param x
-#'
-#' @return
 #' @export
-#'
-#' @examples
 setGeneric("ui", function(x) {
     standardGeneric("ui")
 })
 
+#' Get descriptors.
+#'
+#' @export
+setGeneric("desc", function(x) {
+  standardGeneric("desc")
+})
+
+setMethod("desc", signature(x = "list"), function(x) {
+  lapply(x, desc)
+})
 
 
 #' @export

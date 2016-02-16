@@ -144,20 +144,14 @@ get_source_rels_page <- function(source, id, includeRelationLabels = NULL, inclu
 
 #' Get source-asserted attributes.
 #'
-#' @param source
-#' @param id
+#' @param AUI
 #'
 #' @return
 #' @export
 #'
 #' @examples
-get_source_attrs <- function(source, id) {
-    exhaust_search(FUN = get_source_attrs_page, source = source, id = id)
-}
-
-#' @rdname get_source_attrs
-get_source_attrs_page <- function(source, id, pageNumber = 1, pageSize = 25) {
-    params <- list(ticket = get_service_ticket(get_TGT()))
-    r <- GET(restBaseURL, path = paste0("rest/content/current/", source, "/", id, "/attributes"), query = params)
-    r
+get_source_attrs <- function(aui) {
+  params <- list(ticket = get_service_ticket(get_TGT()))
+  r <- GET(restBaseURL, path = paste0("rest/content/current/AUI/", aui, "/attributes"), query = params)
+  parse_results(r)
 }
