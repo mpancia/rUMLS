@@ -175,7 +175,7 @@ setMethod("synonyms", signature(x = "list"), function(x, ...) {
     lapply(x, synonyms, ...)
 })
 
-setMethod("desc", signature(x = "Concept"), function(x) {
+setMethod("descr", signature(x = "Concept"), function(x) {
   x@name
 })
 

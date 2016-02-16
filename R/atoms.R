@@ -9,6 +9,6 @@ setMethod("ui", signature(x = "Atom"), function(x) {
     x@aui
 })
 
-setMethod("desc", signature(x = "Atom"), function(x) {
+setMethod("descr", signature(x = "Atom"), function(x) {
   x@name
 })

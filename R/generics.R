@@ -8,12 +8,12 @@ setGeneric("ui", function(x) {
 #' Get descriptors.
 #'
 #' @export
-setGeneric("desc", function(x) {
+setGeneric("descr", function(x) {
   standardGeneric("desc")
 })
 
-setMethod("desc", signature(x = "list"), function(x) {
-  lapply(x, desc)
+setMethod("descr", signature(x = "list"), function(x) {
+  lapply(x, descr)
 })
 
 
