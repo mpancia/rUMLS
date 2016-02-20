@@ -2,15 +2,12 @@
 % Please edit documentation in R/sources.R
 \name{get_source_attrs}
 \alias{get_source_attrs}
-\alias{get_source_attrs_page}
 \title{Get source-asserted attributes.}
 \usage{
-get_source_attrs(source, id)
-
-get_source_attrs_page(source, id, pageNumber = 1, pageSize = 25)
+get_source_attrs(aui)
 }
 \arguments{
-\item{id}{}
+\item{AUI}{}
 }
 \description{
 Get source-asserted attributes.

@@ -4,10 +4,7 @@
 \alias{auth_UMLS}
 \title{Authenticate against UMLS.}
 \usage{
-auth_UMLS(user = NULL, pass = NULL)
-}
-\value{
-Returns nothing, sets user credentials for UMLS.
+auth_UMLS()
 }
 \description{
 Authenticate against UMLS.

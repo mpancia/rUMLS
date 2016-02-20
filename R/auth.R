@@ -12,7 +12,6 @@ umls_env <- new.env(parent = emptyenv())
 #' @param pass The UMLS password.
 #'
 #' @return Returns nothing, adding the TGT token to the environment.
-#' @export
 get_TGT <- function(name = NULL, pass = NULL) {
     TGT <- umls_env$TGT
     if (is.null(TGT) && !is.null(name) && !is.null(pass)) {
@@ -35,13 +34,11 @@ get_TGT <- function(name = NULL, pass = NULL) {
 }
 
 #' @rdname get_TGT
-#' @export
 set_TGT <- function(value) {
     umls_env$TGT <- value
 }
 
 #' @rdname get_TGT
-#' @export
 reset_TGT <- function() {
     set_TGT(NULL)
 }
@@ -51,8 +48,6 @@ reset_TGT <- function() {
 #' @param TGT The TGT token for the current session.
 #'
 #' @return Returns nothing, adding the service token to the environment.
-#' @export
-#'
 get_service_ticket <- function(TGT) {
     r <- POST(url = TGT, body = list(service = "http://umlsks.nlm.nih.gov"), encode = "form")
     htmlResponse <- read_html(r)
@@ -61,27 +56,42 @@ get_service_ticket <- function(TGT) {
 }
 
 #' @rdname get_service_ticket
-#' @export
 set_service_ticket <- function(value) {
     umls_env$service_ticket <- value
 }
 
 #' Authenticate against UMLS.
 #'
-#' @return Returns nothing, sets user credentials for UMLS.
 #' @export
-#'
-#'
-auth_UMLS <- function(user = NULL, pass = NULL) {
-    if(is.null(user)){
-      user <- readline("Enter username:")
-    }
-    if(is.null(pass)){
-      pass <- readline("Enter password:")
-      }
-    if (!is.null(user) && !is.null(pass)) {
-        invisible(get_TGT(user, pass))
-    } else {
-        stop("You did not enter a username and password.")
-    }
+auth_UMLS <- function() {
+    creds <- UMLS_creds()
+    invisible(get_TGT(creds$user, creds$pass))
 }
+
+#' Get or set UMLS credentials.
+#'
+#' @export
+UMLS_creds <- function(force = FALSE){
+  user <- Sys.getenv('UMLS_USER')
+  pass <- Sys.getenv('UMLS_PASS')
+  if (!identical(user, "") && !identical(pass, "") && !force) return(list(user = user, pass = pass))
+
+  if (!interactive()) {
+    stop("Please set env vars UMLS_USER, UMLS_PASS to your UMLS username/password respectively.",
+      call. = FALSE)
+  }
+
+  message("Couldn't find env vars UMLS_USER, UMLS_PASS. See ?UMLS_creds for more details.")
+  message("Please enter your username and press enter:")
+  user <- readline(": ")
+  message("Please enter your password and press enter:")
+  pass <- readline(": ")
+  if (identical(user, "") | identical(pass, "")) {
+    stop("User/password entry failed", call. = FALSE)
+  }
+
+  message("Updating env vars.")
+  Sys.setenv(UMLS_USER = user, UMLS_PASS = pass)
+
+  list(user = user, pass = pass)
+  }

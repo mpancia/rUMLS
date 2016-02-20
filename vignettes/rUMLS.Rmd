@@ -21,6 +21,18 @@ There are several ways of accessing the UMLS:
 
 The goal of this package is to provide an abstracted interface to the REST API provided by the NLM, making it easy to search for concepts, access relationships, and get other information like synonyms/translations/etc. Eventually, plotting tools and helper functions to understand the graphical structure will be added. 
 
+## Authentication
+
+This package requires a UMLS license, which includes user credentials. By using this package, you are subject to the licensing agreements that you agree to with the NLM. 
+
+You can authenticate with the UMLS on a per-session basis using the `auth_UMLS()` function, but it is easier to include the relevant credentials in your `.Renviron` file located in your home directory. Add the following lines to your file:
+```
+UMLS_USER=<username>
+UMLS_PASS=<password>
+```
+
+Once these are set, `auth_UMLS()` will load your credentials and authenticate you with the UMLS. If you wish to reset your credentials, use the `umls_creds()` function. 
+
 ## Structure of the UMLS
 
 ## Examples

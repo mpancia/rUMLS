@@ -9,7 +9,7 @@ setGeneric("ui", function(x) {
 #'
 #' @export
 setGeneric("descr", function(x) {
-  standardGeneric("desc")
+  standardGeneric("descr")
 })
 
 setMethod("descr", signature(x = "list"), function(x) {
