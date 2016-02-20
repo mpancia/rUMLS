@@ -1,7 +1,7 @@
 #' @include generics.R
 NULL
 #' Get UMLS source info for a concept.
-#
+# 
 #'
 #' @param source Source vocabulary.
 #' @param id Source ID.
@@ -15,7 +15,7 @@ get_source_info <- function(source, id) {
 }
 
 #' Get UMLS source info for a concept.
-#
+# 
 #'
 #' @param source Source vocabulary.
 #' @param id Source ID.
@@ -23,14 +23,14 @@ get_source_info <- function(source, id) {
 #' @export
 #'
 get_source_atoms <- function(source, id, sabs = NULL, ttys = NULL, language = NULL, includeObsolete = FALSE, includeSuppressible = FALSE, preferred = FALSE) {
-    exhaust_search(FUN = get_source_atoms_page, source = source, id = id, sabs = sabs, ttys = ttys, language = language, includeObsolete = includeObsolete,
+    exhaust_search(FUN = get_source_atoms_page, source = source, id = id, sabs = sabs, ttys = ttys, language = language, includeObsolete = includeObsolete, 
         includeSuppressible = includeSuppressible, preferred = preferred)
 }
 
 #' @rdname get_source_atoms
-get_source_atoms_page <- function(source, id, sabs = NULL, ttys = NULL, language = NULL, includeObsolete = FALSE, includeSuppressible = FALSE, pageNumber = 1,
+get_source_atoms_page <- function(source, id, sabs = NULL, ttys = NULL, language = NULL, includeObsolete = FALSE, includeSuppressible = FALSE, pageNumber = 1, 
     pageSize = 25, preferred = FALSE) {
-    params = list(ticket = get_service_ticket(get_TGT()), sabs = sabs, ttys = ttys, language = language, includeObsolete = includeObsolete, includeSuppressible = includeSuppressible,
+    params = list(ticket = get_service_ticket(get_TGT()), sabs = sabs, ttys = ttys, language = language, includeObsolete = includeObsolete, includeSuppressible = includeSuppressible, 
         pageNumber = pageNumber, pageSize = pageSize)
     if (preferred == TRUE) {
         r <- GET(restBaseURL, path = paste0("rest/content/current/", source, "/", id, "/atoms/preferred"), query = params)
@@ -151,7 +151,7 @@ get_source_rels_page <- function(source, id, includeRelationLabels = NULL, inclu
 #'
 #' @examples
 get_source_attrs <- function(aui) {
-  params <- list(ticket = get_service_ticket(get_TGT()))
-  r <- GET(restBaseURL, path = paste0("rest/content/current/AUI/", aui, "/attributes"), query = params)
-  parse_results(r)
-}
+    params <- list(ticket = get_service_ticket(get_TGT()))
+    r <- GET(restBaseURL, path = paste0("rest/content/current/AUI/", aui, "/attributes"), query = params)
+    parse_results(r)
+} 

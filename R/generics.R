@@ -9,11 +9,11 @@ setGeneric("ui", function(x) {
 #'
 #' @export
 setGeneric("descr", function(x) {
-  standardGeneric("descr")
+    standardGeneric("descr")
 })
 
 setMethod("descr", signature(x = "list"), function(x) {
-  lapply(x, descr)
+    lapply(x, descr)
 })
 
 
@@ -34,24 +34,18 @@ setGeneric("relations", function(x) {
     standardGeneric("relations")
 })
 
-
-#' @export
+#' Get the head UI for a relation.
 #'
-#' @examples
+#' @export
 setGeneric("headui", function(x) {
     standardGeneric("headui")
 })
 
 
 
-#' Title
+#' Get the tail UI for a relation.
 #'
-#' @param x
-#'
-#' @return
 #' @export
-#'
-#' @examples
 setGeneric("tailui", function(x) {
     standardGeneric("tailui")
 })
@@ -84,6 +78,8 @@ setGeneric("neighborhood", function(x) {
     standardGeneric("neighborhood")
 })
 
+#' Get the source vocabulary for an object.
+#'
 #' @export
 setGeneric("source_vocab", function(x) {
     standardGeneric("source_vocab")
@@ -91,12 +87,14 @@ setGeneric("source_vocab", function(x) {
 
 #' Get labels for relationship.
 #'
-#' @param rel
-#' @param type
+#' Retrieves the labels for a relationship \code{rel}. Vectorized over \code{rel}.
+#'
+#' @param rel The input relation.
+#' @param type The type of relation.
 #'
 #' @return
 #' @export
 #'
 setGeneric("relation_label", function(rel, type) {
     standardGeneric("relation_label")
-})
+}) 

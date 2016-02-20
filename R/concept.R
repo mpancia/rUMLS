@@ -14,7 +14,7 @@ get_concept_rels_page <- function(CUI, pageNumber = 1, pageSize = 25) {
 }
 
 #' Get UMLS concept definitions.
-#
+# 
 #'
 #' @param CUI CUI of interest.
 #' @param sabs Source vocabularies, comma separated.
@@ -29,7 +29,7 @@ get_concept_defs <- function(CUI, sabs = NULL) {
 }
 
 #' Get UMLS concept atoms.
-#
+# 
 #'
 #' @param CUI CUI of interest.
 #' @param sabs Source vocabularies, comma separated.
@@ -39,12 +39,12 @@ get_concept_defs <- function(CUI, sabs = NULL) {
 #' @export
 #'
 get_concept_atoms <- function(CUI, sabs = NULL, ttys = NULL, language = NULL, includeObsolete = FALSE, includeSuppressible = FALSE) {
-    exhaust_search(FUN = get_concept_atoms_page, PARSER = parse_atoms, CUI = CUI, sabs = sabs, ttys = ttys, language = language, includeObsolete = includeObsolete,
+    exhaust_search(FUN = get_concept_atoms_page, PARSER = parse_atoms, CUI = CUI, sabs = sabs, ttys = ttys, language = language, includeObsolete = includeObsolete, 
         includeSuppressible = includeSuppressible)
 }
 
 #' @rdname get_concept_atoms
-get_concept_atoms_page <- function(CUI, sabs = NULL, ttys = NULL, language = NULL, includeObsolete = FALSE, includeSuppressible = FALSE, pageNumber = 1,
+get_concept_atoms_page <- function(CUI, sabs = NULL, ttys = NULL, language = NULL, includeObsolete = FALSE, includeSuppressible = FALSE, pageNumber = 1, 
     pageSize = 25) {
     params = list(ticket = get_service_ticket(get_TGT()), sabs = sabs, pageNumber = pageNumber, pageSize = pageSize)
     r <- GET(restBaseURL, path = paste0("rest/content/current/CUI/", CUI, "/atoms"), query = params)
@@ -52,7 +52,7 @@ get_concept_atoms_page <- function(CUI, sabs = NULL, ttys = NULL, language = NUL
 }
 
 #' Get UMLS concept info
-#
+# 
 #'
 #' @param CUI CUI of interest.
 #' @param sabs Source vocabularies, comma separated.
@@ -116,10 +116,10 @@ setMethod("get_concept", signature(x = "character"), function(x, info_ret = "non
             rel
         })
     }
-
-    concept <- new("Concept", cui = x, suppressible = suppressible, dateAdded = dateAdded, majorRevisionDate = majorRevisionDate, status = status,
-        atomCount = atomCount, attributeCount = attributeCount, cvMemberCount = cvMemberCount, atomsURL = atomsURL, definitionsURL = definitions,
-        relationsURL = relationsURL, semanticTypes = semanticTypes, preferredAtom = preferredAtom, relationCount = relationCount, name = name, relations = rels,
+    
+    concept <- new("Concept", cui = x, suppressible = suppressible, dateAdded = dateAdded, majorRevisionDate = majorRevisionDate, status = status, 
+        atomCount = atomCount, attributeCount = attributeCount, cvMemberCount = cvMemberCount, atomsURL = atomsURL, definitionsURL = definitions, 
+        relationsURL = relationsURL, semanticTypes = semanticTypes, preferredAtom = preferredAtom, relationCount = relationCount, name = name, relations = rels, 
         atoms = atoms)
 })
 
@@ -163,10 +163,10 @@ setMethod("relations", signature(x = "list"), function(x) {
 
 setMethod("synonyms", signature(x = "Concept"), function(x, ...) {
     atoms <- x@atoms
-    if(hasArg("language")){
-      args <- list(...)
-      language <- args$language
-      atoms <- atoms[sapply(atoms, function(x) x@language == language)]
+    if (hasArg("language")) {
+        args <- list(...)
+        language <- args$language
+        atoms <- atoms[sapply(atoms, function(x) x@language == language)]
     }
     unique(sapply(atoms, function(atom) attr(atom, "name")))
 })
@@ -176,7 +176,7 @@ setMethod("synonyms", signature(x = "list"), function(x, ...) {
 })
 
 setMethod("descr", signature(x = "Concept"), function(x) {
-  x@name
+    x@name
 })
 
 setMethod("neighborhood", signature(x = "Concept"), function(x) {
@@ -196,7 +196,7 @@ setMethod("neighborhood", signature(x = "list"), function(x) {
 })
 diseases <- function(concept) {
     nbhd <- neighborhood(concept)
-
+    
 }
 
 #' Get the codes for atoms from a list of vocabularies.
@@ -214,3 +214,21 @@ codes <- function(concept, vocab_list) {
     codes <- lapply(right_atoms, function(y) list(code = rev(str_split(y@codeURL, "/")[[1]])[[1]], source = source_vocab(y)))
     codes
 }
+
+#' Prints a Concept.
+#' @export
+print.Concept <- function(x, ...) {
+    cat(x@name, x@cui, sep = "\t")
+    cat("\n")
+    cat("Semantic Types")
+    cat("\n")
+    cat(paste0(rep("-", 40)))
+    cat("\n")
+    cat(paste(x@semanticTypes, collapse = "\n"))
+    cat("\n")
+    cat(paste0(rep("-", 40)))
+    cat("\n")
+    cat("Number of Atoms:", x@atomCount)
+    cat("\n")
+    cat("Number of Relations:", x@relationCount)
+} 

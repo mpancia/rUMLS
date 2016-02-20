@@ -29,7 +29,7 @@ get_TGT <- function(name = NULL, pass = NULL) {
     } else if (is.null(TGT) && (is.null(name) | !is.null(pass))) {
         stop("No username/password provided.")
     }
-
+    
     TGT
 }
 
@@ -70,28 +70,32 @@ auth_UMLS <- function() {
 
 #' Get or set UMLS credentials.
 #'
+#' \code{UMLS_creds} sets or gets the UMLS credentials for the current session.
+#'
+#' If the environment vars \code{UMLS_USER, UMLS_PASS} have been set in \code{.Renviron}, they will be loaded. Otherwise, you will be prompted to enter a username/password.
+#'
 #' @export
-UMLS_creds <- function(force = FALSE){
-  user <- Sys.getenv('UMLS_USER')
-  pass <- Sys.getenv('UMLS_PASS')
-  if (!identical(user, "") && !identical(pass, "") && !force) return(list(user = user, pass = pass))
-
-  if (!interactive()) {
-    stop("Please set env vars UMLS_USER, UMLS_PASS to your UMLS username/password respectively.",
-      call. = FALSE)
-  }
-
-  message("Couldn't find env vars UMLS_USER, UMLS_PASS. See ?UMLS_creds for more details.")
-  message("Please enter your username and press enter:")
-  user <- readline(": ")
-  message("Please enter your password and press enter:")
-  pass <- readline(": ")
-  if (identical(user, "") | identical(pass, "")) {
-    stop("User/password entry failed", call. = FALSE)
-  }
-
-  message("Updating env vars.")
-  Sys.setenv(UMLS_USER = user, UMLS_PASS = pass)
-
-  list(user = user, pass = pass)
-  }
+UMLS_creds <- function(force = FALSE) {
+    user <- Sys.getenv("UMLS_USER")
+    pass <- Sys.getenv("UMLS_PASS")
+    if (!identical(user, "") && !identical(pass, "") && !force) 
+        return(list(user = user, pass = pass))
+    
+    if (!interactive()) {
+        stop("Please set env vars UMLS_USER, UMLS_PASS to your UMLS username/password respectively.", call. = FALSE)
+    }
+    
+    message("Couldn't find env vars UMLS_USER, UMLS_PASS. See ?UMLS_creds for more details.")
+    message("Please enter your username and press enter:")
+    user <- readline(": ")
+    message("Please enter your password and press enter:")
+    pass <- readline(": ")
+    if (identical(user, "") | identical(pass, "")) {
+        stop("User/password entry failed", call. = FALSE)
+    }
+    
+    message("Updating env vars.")
+    Sys.setenv(UMLS_USER = user, UMLS_PASS = pass)
+    
+    list(user = user, pass = pass)
+} 

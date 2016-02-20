@@ -3,6 +3,8 @@ authEndpoint <- "/cas/v1/tickets"
 restBaseURL <- "https://uts-ws.nlm.nih.gov/"
 
 #' @importFrom stringr str_split
+
+# Exhaust the search result over all pages.
 exhaust_search <- function(FUN = searchFunction, PARSER = parseFunction, ...) {
     results <- list()
     curPage <- 1
@@ -19,6 +21,7 @@ exhaust_search <- function(FUN = searchFunction, PARSER = parseFunction, ...) {
     unlist(results, recursive = F)
 }
 
+# Parser functions for various response types.
 parse_results <- function(result) {
     resContent <- content(result)
     results <- resContent$result
@@ -29,16 +32,7 @@ parse_results <- function(result) {
     }
 }
 
-parse_atoms <- function(result) {
-    initialParse <- parse_results(result)
-    if (!is.null(initialParse)) {
-        parsed <- lapply(initialParse, parse_atom)
-    } else {
-        parsed <- initialParse
-    }
-    parsed
-}
-
+# Parse atoms.
 parse_atom <- function(atom) {
     aui <- atom$ui
     suppressible <- as.logical(atom$suppressible)
@@ -87,16 +81,18 @@ parse_atom <- function(atom) {
     parsed
 }
 
-parse_rels <- function(result) {
+# Vectorize atom parser.
+parse_atoms <- function(result) {
     initialParse <- parse_results(result)
     if (!is.null(initialParse)) {
-        parsed <- lapply(initialParse, parse_rel)
+        parsed <- lapply(initialParse, parse_atom)
     } else {
         parsed <- initialParse
     }
     parsed
 }
 
+# Parse relations.
 parse_rel <- function(rel) {
     rui <- rel$ui
     suppressible <- as.logical(rel$suppressible)
@@ -131,4 +127,15 @@ parse_rel <- function(rel) {
             attributeCount = attributeCount, tailui = tailui, headui = NULL)
     }
     relObj
+}
+
+# Vectorize parse relations.
+parse_rels <- function(result) {
+    initialParse <- parse_results(result)
+    if (!is.null(initialParse)) {
+        parsed <- lapply(initialParse, parse_rel)
+    } else {
+        parsed <- initialParse
+    }
+    parsed
 } 
