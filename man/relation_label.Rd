@@ -7,9 +7,11 @@
 relation_label(rel, type)
 }
 \arguments{
-\item{type}{}
+\item{rel}{The input relation.}
+
+\item{type}{The type of relation.}
 }
 \description{
-Get labels for relationship.
+Retrieves the labels for a relationship \code{rel}. Vectorized over \code{rel}.
 }
 

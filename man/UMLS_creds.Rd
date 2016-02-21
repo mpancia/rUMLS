@@ -7,6 +7,9 @@
 UMLS_creds(force = FALSE)
 }
 \description{
-Get or set UMLS credentials.
+\code{UMLS_creds} sets or gets the UMLS credentials for the current session.
+}
+\details{
+If the environment vars \code{UMLS_USER, UMLS_PASS} have been set in \code{.Renviron}, they will be loaded. Otherwise, you will be prompted to enter a username/password.
 }
 

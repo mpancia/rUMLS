@@ -3,7 +3,7 @@ setClassUnion("listOrNULL", c("list", "NULL"))
 
 #' An S4 class to represent atoms.
 #'
-#' An Atom has slots for the output from the UMLS API, as specified by
+#' An Atom has slots for the output from the UMLS API, as specified by \href{https://documentation.uts.nlm.nih.gov/rest/atoms/#sample-output}{the NLM.}
 #'
 #' @slot aui
 #' @slot suppressible
@@ -20,8 +20,8 @@ setClassUnion("listOrNULL", c("list", "NULL"))
 #' @slot name
 #' @slot language
 #' @slot definitionsURL
-setClass("Atom", representation(aui = "character", suppressible = "logical", rootSource = "character", termType = "character", codeURL = "character", 
-    conceptURL = "character", sourceConceptURL = "charOrNULL", sourceDescriptor = "charOrNULL", attributesURL = "charOrNULL", parentsURL = "charOrNULL", 
+setClass("Atom", representation(aui = "character", suppressible = "logical", rootSource = "character", termType = "character", codeURL = "character",
+    conceptURL = "character", sourceConceptURL = "charOrNULL", sourceDescriptor = "charOrNULL", attributesURL = "charOrNULL", parentsURL = "charOrNULL",
     childrenURL = "charOrNULL", relations = "charOrNULL", name = "character", language = "character", definitionsURL = "charOrNULL"))
 
 print.Atom <- function(x, ..., n = NULL, width = NULL) {
@@ -30,7 +30,7 @@ print.Atom <- function(x, ..., n = NULL, width = NULL) {
 
 #' An S4 class to represent concepts.
 #'
-#' A Concept has slots for the output from the UMLS API, as specified by
+#' A Concept has slots for the output from the UMLS API, as specified by  \href{https://documentation.uts.nlm.nih.gov/rest/concept/#sample-output}{the NLM.}
 #'
 #' @slot cui
 #' @slot suppressible
@@ -49,26 +49,29 @@ print.Atom <- function(x, ..., n = NULL, width = NULL) {
 #' @slot name
 #' @slot atoms
 #' @slot relations
-setClass("Concept", representation(cui = "character", suppressible = "logical", dateAdded = "Date", majorRevisionDate = "Date", status = "character", 
-    atomCount = "numeric", attributeCount = "numeric", cvMemberCount = "numeric", atomsURL = "character", definitionsURL = "charOrNULL", relationsURL = "character", 
+setClass("Concept", representation(cui = "character", suppressible = "logical", dateAdded = "Date", majorRevisionDate = "Date", status = "character",
+    atomCount = "numeric", attributeCount = "numeric", cvMemberCount = "numeric", atomsURL = "character", definitionsURL = "charOrNULL", relationsURL = "character",
     semanticTypes = "list", preferredAtom = "Atom", relationCount = "numeric", name = "character", atoms = "listOrNULL", relations = "listOrNULL"))
 
-
-#' An S4 class to represent relations.
+#' An S4 class to represent NLM-asserted relations.
 #'
-#' A relation has slots for the output from the UMLS API, as specified by
+#' A relation has slots for the output from the UMLS API, as specified by \href{https://documentation.uts.nlm.nih.gov/rest/relations/}{the NLM.}
 #'
 #' @slot rui
 #' @slot headui
 #' @slot tailui
 #' @slot suppressible
 #' @slot sourceui
-setClass("Relation", representation(rui = "character", headui = "charOrNULL", tailui = "charOrNULL", suppressible = "logical", sourceui = "charOrNULL", 
-    obsolete = "logical", sourceOriginated = "logical", rootSource = "character", relationLabel = "character", additionalRelationLabel = "charOrNULL", 
+setClass("Relation", representation(rui = "character", headui = "charOrNULL", tailui = "charOrNULL", suppressible = "logical", sourceui = "charOrNULL",
+    obsolete = "logical", sourceOriginated = "logical", rootSource = "character", relationLabel = "character", additionalRelationLabel = "charOrNULL",
     groupId = "charOrNULL", attributeCount = "numeric"))
 
 #' An S4 class to represent concept relations.
+#'
+#' These are a subclass of \code{Relation.}
 setClass("ConceptRelation", representation(relatedConceptURL = "character"), contains = "Relation")
 
 #' An S4 class to represent atom relations.
-setClass("AtomRelation", representation(relatedAtomURL = "character"), contains = "Relation") 
+#'
+#' These are a subclass of \code{Relation.}
+setClass("AtomRelation", representation(relatedAtomURL = "character"), contains = "Relation")

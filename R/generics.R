@@ -63,10 +63,16 @@ setGeneric("related", function(x) {
 })
 
 
+#' Get UMLS Concept.
+#'
+#' This retrieves a UMLS Concept, as identified by a CUI.
+#'
+#' @param CUI A CUI or list of CUIs.
+#'
+#' @return A \code{\linkS4class{Concept}} or list of \code{\linkS4class{Concept}} objects.
 #' @export
 #'
-#' @examples
-setGeneric("get_concept", function(x, info_ret = "none") {
+setGeneric("get_concept", function(CUI, info_ret = "none") {
     standardGeneric("get_concept")
 })
 
@@ -97,4 +103,4 @@ setGeneric("source_vocab", function(x) {
 #'
 setGeneric("relation_label", function(rel, type) {
     standardGeneric("relation_label")
-}) 
+})

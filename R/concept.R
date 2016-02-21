@@ -14,7 +14,7 @@ get_concept_rels_page <- function(CUI, pageNumber = 1, pageSize = 25) {
 }
 
 #' Get UMLS concept definitions.
-# 
+#
 #'
 #' @param CUI CUI of interest.
 #' @param sabs Source vocabularies, comma separated.
@@ -29,7 +29,7 @@ get_concept_defs <- function(CUI, sabs = NULL) {
 }
 
 #' Get UMLS concept atoms.
-# 
+#
 #'
 #' @param CUI CUI of interest.
 #' @param sabs Source vocabularies, comma separated.
@@ -39,12 +39,12 @@ get_concept_defs <- function(CUI, sabs = NULL) {
 #' @export
 #'
 get_concept_atoms <- function(CUI, sabs = NULL, ttys = NULL, language = NULL, includeObsolete = FALSE, includeSuppressible = FALSE) {
-    exhaust_search(FUN = get_concept_atoms_page, PARSER = parse_atoms, CUI = CUI, sabs = sabs, ttys = ttys, language = language, includeObsolete = includeObsolete, 
+    exhaust_search(FUN = get_concept_atoms_page, PARSER = parse_atoms, CUI = CUI, sabs = sabs, ttys = ttys, language = language, includeObsolete = includeObsolete,
         includeSuppressible = includeSuppressible)
 }
 
 #' @rdname get_concept_atoms
-get_concept_atoms_page <- function(CUI, sabs = NULL, ttys = NULL, language = NULL, includeObsolete = FALSE, includeSuppressible = FALSE, pageNumber = 1, 
+get_concept_atoms_page <- function(CUI, sabs = NULL, ttys = NULL, language = NULL, includeObsolete = FALSE, includeSuppressible = FALSE, pageNumber = 1,
     pageSize = 25) {
     params = list(ticket = get_service_ticket(get_TGT()), sabs = sabs, pageNumber = pageNumber, pageSize = pageSize)
     r <- GET(restBaseURL, path = paste0("rest/content/current/CUI/", CUI, "/atoms"), query = params)
@@ -52,7 +52,7 @@ get_concept_atoms_page <- function(CUI, sabs = NULL, ttys = NULL, language = NUL
 }
 
 #' Get UMLS concept info
-# 
+#
 #'
 #' @param CUI CUI of interest.
 #' @param sabs Source vocabularies, comma separated.
@@ -67,16 +67,9 @@ get_concept_info <- function(CUI) {
     parse_results(r)
 }
 
-
-#' Get Concept
-#'
-#' @param x
-#'
-#' @return
-#' @export
-#'
-setMethod("get_concept", signature(x = "character"), function(x, info_ret = "none") {
-    info <- get_concept_info(x)
+# Define get_concept.
+setMethod("get_concept", signature(CUI = "character"), function(CUI, info_ret = "none") {
+    info <- get_concept_info(CUI)
     semanticTypes <- info$semanticTypes
     suppressible <- info$suppressible
     dateAdded <- as.Date(info$dateAdded, format = "%m-%d-%y")
@@ -92,7 +85,7 @@ setMethod("get_concept", signature(x = "character"), function(x, info_ret = "non
         definitions <- info$definitions
     }
     relationsURL <- info$relations
-    preferredAtom <- get_pref_atom(x)
+    preferredAtom <- get_pref_atom(CUI)
     relationCount <- as.numeric(info$relationCount)
     name <- info$name
     if (info_ret == "none") {
@@ -100,28 +93,29 @@ setMethod("get_concept", signature(x = "character"), function(x, info_ret = "non
         atoms <- NULL
     } else if (info_ret == "atoms") {
         rels <- NULL
-        atoms <- get_concept_atoms(x)
+        atoms <- get_concept_atoms(CUI)
     } else if (info_ret == "rels") {
         atoms <- NULL
-        rels <- get_concept_rels(x)
+        rels <- get_concept_rels(CUI)
         rels <- sapply(rels, function(rel) {
-            attr(rel, "headui") <- x
+            attr(rel, "headui") <- CUI
             rel
         })
     } else {
-        atoms <- get_concept_atoms(x)
-        rels <- get_concept_rels(x)
+        atoms <- get_concept_atoms(CUI)
+        rels <- get_concept_rels(CUI)
         rels <- sapply(rels, function(rel) {
-            attr(rel, "headui") <- x
+            attr(rel, "headui") <- CUI
             rel
         })
     }
-    
-    concept <- new("Concept", cui = x, suppressible = suppressible, dateAdded = dateAdded, majorRevisionDate = majorRevisionDate, status = status, 
-        atomCount = atomCount, attributeCount = attributeCount, cvMemberCount = cvMemberCount, atomsURL = atomsURL, definitionsURL = definitions, 
-        relationsURL = relationsURL, semanticTypes = semanticTypes, preferredAtom = preferredAtom, relationCount = relationCount, name = name, relations = rels, 
+
+    concept <- new("Concept", cui = CUI, suppressible = suppressible, dateAdded = dateAdded, majorRevisionDate = majorRevisionDate, status = status,
+        atomCount = atomCount, attributeCount = attributeCount, cvMemberCount = cvMemberCount, atomsURL = atomsURL, definitionsURL = definitions,
+        relationsURL = relationsURL, semanticTypes = semanticTypes, preferredAtom = preferredAtom, relationCount = relationCount, name = name, relations = rels,
         atoms = atoms)
-})
+}
+  )
 
 
 get_pref_atom <- function(CUI) {
@@ -196,7 +190,7 @@ setMethod("neighborhood", signature(x = "list"), function(x) {
 })
 diseases <- function(concept) {
     nbhd <- neighborhood(concept)
-    
+
 }
 
 #' Get the codes for atoms from a list of vocabularies.
@@ -231,4 +225,4 @@ print.Concept <- function(x, ...) {
     cat("Number of Atoms:", x@atomCount)
     cat("\n")
     cat("Number of Relations:", x@relationCount)
-} 
+}
