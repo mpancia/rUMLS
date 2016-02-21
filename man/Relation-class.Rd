@@ -7,4 +7,17 @@
 \description{
 A relation has slots for the output from the UMLS API, as specified by \href{https://documentation.uts.nlm.nih.gov/rest/relations/}{the NLM.}
 }
+\section{Slots}{
+
+\describe{
+\item{\code{rui}}{The relation identifier.}
+
+\item{\code{headui}}{The identifier of the head of the relation (target).}
+
+\item{\code{tailui}}{The identifier of the tail of the relation (source).}
+
+\item{\code{suppressible}}{Whether or not this relation is suppressible.}
+
+\item{\code{sourceui}}{The source identifier.}
+}}
 

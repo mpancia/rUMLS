@@ -7,4 +7,39 @@
 \description{
 A Concept has slots for the output from the UMLS API, as specified by  \href{https://documentation.uts.nlm.nih.gov/rest/concept/#sample-output}{the NLM.}
 }
+\section{Slots}{
+
+\describe{
+\item{\code{cui}}{The concept identifier.}
+
+\item{\code{suppressible}}{Whether or not the concept is suppressible.}
+
+\item{\code{dateAdded}}{The date the concept was added.}
+
+\item{\code{majorRevisionDate}}{The date of the last major revision.}
+
+\item{\code{status}}{The status of the concept.}
+
+\item{\code{atomCount}}{The number of atoms.}
+
+\item{\code{attributeCount}}{The number of attributes.}
+
+\item{\code{atomsURL}}{The API URL for the concept atoms.}
+
+\item{\code{definitionsURL}}{The API URL for the atom's parents.}
+
+\item{\code{relationsURL}}{The API URL for the atom's parents.}
+
+\item{\code{semanticTypes}}{The associated \href{https://www.nlm.nih.gov/research/umls/META3_current_semantic_types.html}{semantic types} of the concept.}
+
+\item{\code{preferredAtom}}{The UMLS-asserted preferred \linkS4class{Atom}.}
+
+\item{\code{relationCount}}{The number of relations.}
+
+\item{\code{name}}{The preferred name of the concept.}
+
+\item{\code{atoms}}{The atoms associated to the concept. May be a list of \linkS4class{Atom} objects or empty, depending on whether or not the atoms have been retrieved.}
+
+\item{\code{relations}}{The relations between the concept and other UMLS entities. May be a list of \linkS4class{Relation} objects or empty, depending on whether or not the relations have been retrieved.}
+}}
 

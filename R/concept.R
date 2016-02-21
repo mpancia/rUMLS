@@ -14,12 +14,13 @@ get_concept_rels_page <- function(CUI, pageNumber = 1, pageSize = 25) {
 }
 
 #' Get UMLS concept definitions.
-#
+#'
+#' Retrieves the definitions of a given \linkS4class{Concept}, as per \href{https://documentation.uts.nlm.nih.gov/rest/definitions/}{the NLM}.
 #'
 #' @param CUI CUI of interest.
 #' @param sabs Source vocabularies, comma separated.
 #'
-#' @return
+#' @return A list of \linkS4class{Definition} objects.
 #' @export
 #'
 get_concept_defs <- function(CUI, sabs = NULL) {
@@ -29,13 +30,16 @@ get_concept_defs <- function(CUI, sabs = NULL) {
 }
 
 #' Get UMLS concept atoms.
-#
 #'
-#' @param CUI CUI of interest.
+#' Retrieves the atoms that are associated to a given \linkS4class{Concept}.
+#'
+#' @param CUI CUI of concept to obtain atoms for.
 #' @param sabs Source vocabularies, comma separated.
-#' @param ttys
-#' @param language
-#' @return
+#' @param ttys Term types, any one of the \href{https://www.nlm.nih.gov/research/umls/knowledge_sources/metathesaurus/release/abbreviations.html#TTYC}{valid term types.}
+#' @param language The language of interest.
+#' @param includeObsolete Whether or not to include obsolete atoms.
+#' @param includeSuppressible Whether or not to include suppressible atoms.
+#' @return A list of \linkS4class{Atom} objects.
 #' @export
 #'
 get_concept_atoms <- function(CUI, sabs = NULL, ttys = NULL, language = NULL, includeObsolete = FALSE, includeSuppressible = FALSE) {

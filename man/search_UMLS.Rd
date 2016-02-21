@@ -11,20 +11,22 @@ search_UMLS(search, inputType = "sourceUi", includeObsolete = FALSE,
 \arguments{
 \item{search}{The search input.}
 
-\item{inputType}{The type of input. Can be one of}
+\item{inputType}{The type of input. Can be one of \code{'atom', 'code','sourceConcept','sourceDescriptor','sourceUi'} to obtain a valid response.}
 
 \item{includeObsolete}{Whether or not to include obsolete results.}
 
 \item{includeSuppressible}{Whether or not to include suppressible results.}
 
-\item{sabs}{Source vocabularies to search.}
+\item{sabs}{Source vocabularies to search. A list of elements from the \href{http://www.nlm.nih.gov/research/umls/knowledge_sources/metathesaurus/release/source_vocabularies.html}{valid source vocabularies.}}
 
-\item{searchType}{Type of search.}
+\item{searchType}{Type of search. Can be one of \code{'exact','words','leftTruncation', 'rightTruncation','approximate', 'normalizedString'}.}
+
+\item{response_type}{What sort of information to obtain. This can be one of \code{'list', }}
 }
 \value{
-If \code{response_type == 'list'}, then a list of results. Otherwise, returns a list of concepts with the\code{response_type} info included.
+If \code{response_type == 'list'}, then a list of results. Otherwise, returns a list of \linkS4class{Concept} objects with the\code{response_type} info included.
 }
 \description{
-Search the UMLS.
+This allows for searching of the UMLS. The API parameters correspond to those on the \href{https://documentation.uts.nlm.nih.gov/rest/search/#query-parameters}{NLM website.}
 }
 

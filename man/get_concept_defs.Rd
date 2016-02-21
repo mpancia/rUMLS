@@ -11,7 +11,10 @@ get_concept_defs(CUI, sabs = NULL)
 
 \item{sabs}{Source vocabularies, comma separated.}
 }
+\value{
+A list of \linkS4class{Definition} objects.
+}
 \description{
-Get UMLS concept definitions.
+Retrieves the definitions of a given \linkS4class{Concept}, as per \href{https://documentation.uts.nlm.nih.gov/rest/definitions/}{the NLM}.
 }
 

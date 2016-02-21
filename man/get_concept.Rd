@@ -10,7 +10,7 @@ get_concept(CUI, info_ret = "none")
 \item{CUI}{A CUI or list of CUIs.}
 }
 \value{
-A \code{\linkS4class{Concept}} or list of  \code{\linkS4class{Concept}}s.
+A \code{\linkS4class{Concept}} or list of \code{\linkS4class{Concept}} objects.
 }
 \description{
 This retrieves a UMLS Concept, as identified by a CUI.

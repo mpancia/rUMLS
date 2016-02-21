@@ -13,11 +13,22 @@ get_concept_atoms_page(CUI, sabs = NULL, ttys = NULL, language = NULL,
   pageSize = 25)
 }
 \arguments{
-\item{CUI}{CUI of interest.}
+\item{CUI}{CUI of concept to obtain atoms for.}
 
 \item{sabs}{Source vocabularies, comma separated.}
+
+\item{ttys}{Term types, any one of the \href{https://www.nlm.nih.gov/research/umls/knowledge_sources/metathesaurus/release/abbreviations.html#TTYC}{valid term types.}}
+
+\item{language}{The language of interest.}
+
+\item{includeObsolete}{Whether or not to include obsolete atoms.}
+
+\item{includeSuppressible}{Whether or not to include suppressible atoms.}
+}
+\value{
+A list of \linkS4class{Atom} objects.
 }
 \description{
-Get UMLS concept atoms.
+Retrieves the atoms that are associated to a given \linkS4class{Concept}.
 }
 

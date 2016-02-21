@@ -7,4 +7,19 @@
 \description{
 These are a subclass of \code{Relation.}
 }
+\section{Slots}{
+
+\describe{
+\item{\code{rui}}{The relation identifier.}
+
+\item{\code{headui}}{The identifier of the head of the relation (target).}
+
+\item{\code{tailui}}{The identifier of the tail of the relation (source).}
+
+\item{\code{suppressible}}{Whether or not this relation is suppressible.}
+
+\item{\code{sourceui}}{The source identifier.}
+
+\item{\code{relatedAtomURL}}{The API URL of the related atom.}
+}}
 
