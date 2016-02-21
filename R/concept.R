@@ -13,21 +13,24 @@ get_concept_rels_page <- function(CUI, pageNumber = 1, pageSize = 25) {
     r
 }
 
-#' Get UMLS concept definitions.
-#'
-#' Retrieves the definitions of a given \linkS4class{Concept}, as per \href{https://documentation.uts.nlm.nih.gov/rest/definitions/}{the NLM}.
-#'
-#' @param CUI CUI of interest.
-#' @param sabs Source vocabularies, comma separated.
-#'
-#' @return A list of \linkS4class{Definition} objects.
-#' @export
-#'
-get_concept_defs <- function(CUI, sabs = NULL) {
-    params = list(ticket = get_service_ticket(get_TGT()), sabs = sabs)
-    r <- GET(restBaseURL, path = paste0("rest/content/current/CUI/", CUI, "/definitions"), query = params)
-    parse_results(r)
-}
+# Define definitions for CUIs
+setMethod("definitions", signature(CUI = "character"), function(CUI, sabs = NULL){
+  params = list(ticket = get_service_ticket(get_TGT()), sabs = sabs)
+  r <- GET(restBaseURL, path = paste0("rest/content/current/CUI/", CUI, "/definitions"), query = params)
+  parse_defs(r)
+  })
+
+# Define definitions for Concepts
+setMethod("definitions", signature(CUI = "Concept"), function(CUI, sabs = NULL){
+  charcui <- ui(CUI)
+  definitions(charcui)
+})
+
+# Vectorize definitions
+setMethod("definitions", signature(CUI = "list"), function(CUI, sabs = NULL){
+  lapply(CUI, function(x) definitions(x, sabs))
+})
+
 
 #' Get UMLS concept atoms.
 #'

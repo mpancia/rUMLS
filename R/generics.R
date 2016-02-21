@@ -104,3 +104,16 @@ setGeneric("source_vocab", function(x) {
 setGeneric("relation_label", function(rel, type) {
     standardGeneric("relation_label")
 })
+
+#' #' Get UMLS concept definitions.
+#'
+#' Retrieves the definitions of a given \linkS4class{Concept}, as per \href{https://documentation.uts.nlm.nih.gov/rest/definitions/}{the NLM}. This is vectorized over the input.
+#'
+#' @param CUI The input concept, CUI, or list of such things.
+#' @param sab List of source vocabularies, comma separated.
+#' @return A \linkS4class{Definition} object or a list of \linkS4class{Definition} objects.
+#' @export
+#'
+setGeneric("definitions", function(CUI, sabs) {
+  standardGeneric("definitions")
+})

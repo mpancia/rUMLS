@@ -74,9 +74,9 @@ parse_atom <- function(atom) {
     }
     name <- atom$name
     language <- atom$language
-    
-    parsed <- new("Atom", name = name, language = language, definitionsURL = definitionsURL, relations = relationsURL, childrenURL = childrenURL, 
-        parentsURL = parentsURL, attributesURL = attributesURL, sourceDescriptor = sourceDescriptor, sourceConceptURL = sourceConceptURL, conceptURL = conceptURL, 
+
+    parsed <- new("Atom", name = name, language = language, definitionsURL = definitionsURL, relations = relationsURL, childrenURL = childrenURL,
+        parentsURL = parentsURL, attributesURL = attributesURL, sourceDescriptor = sourceDescriptor, sourceConceptURL = sourceConceptURL, conceptURL = conceptURL,
         codeURL = codeURL, termType = termType, suppressible = suppressible, rootSource = rootSource, aui = aui)
     parsed
 }
@@ -116,14 +116,14 @@ parse_rel <- function(rel) {
     if (classStr == "ConceptRelation") {
         relatedConceptURL <- rel$relatedConcept
         tailui <- tail(str_split(relatedConceptURL, "/")[[1]], 1)
-        relObj <- new("ConceptRelation", rui = rui, suppressible = suppressible, sourceui = sourceui, obsolete = obsolete, sourceOriginated = sourceOriginated, 
-            rootSource = rootSource, relationLabel = relationLabel, groupId = groupId, relatedConceptURL = relatedConceptURL, additionalRelationLabel = additionalRelationLabel, 
+        relObj <- new("ConceptRelation", rui = rui, suppressible = suppressible, sourceui = sourceui, obsolete = obsolete, sourceOriginated = sourceOriginated,
+            rootSource = rootSource, relationLabel = relationLabel, groupId = groupId, relatedConceptURL = relatedConceptURL, additionalRelationLabel = additionalRelationLabel,
             attributeCount = attributeCount, tailui = tailui, headui = NULL)
     } else {
         relatedAtomURL <- rel$relatedAtom
         tailui <- tail(str_split(relatedAtomURL, "/")[[1]], 1)
-        relObj <- new("AtomRelation", rui = rui, suppressible = suppressible, sourceui = sourceui, obsolete = obsolete, sourceOriginated = sourceOriginated, 
-            rootSource = rootSource, relationLabel = relationLabel, groupId = groupId, relatedAtomURL = relatedAtomURL, additionalRelationLabel = additionalRelationLabel, 
+        relObj <- new("AtomRelation", rui = rui, suppressible = suppressible, sourceui = sourceui, obsolete = obsolete, sourceOriginated = sourceOriginated,
+            rootSource = rootSource, relationLabel = relationLabel, groupId = groupId, relatedAtomURL = relatedAtomURL, additionalRelationLabel = additionalRelationLabel,
             attributeCount = attributeCount, tailui = tailui, headui = NULL)
     }
     relObj
@@ -138,4 +138,24 @@ parse_rels <- function(result) {
         parsed <- initialParse
     }
     parsed
-} 
+}
+
+# Parse definitions.
+parse_def <- function(result){
+  sourceOriginated <- result$sourceOriginated
+  rootSource <- result$rootSource
+  value <- result$value
+  defObj <- new("Definition", sourceOriginated = sourceOriginated, rootSource = rootSource, value = value)
+  defObj
+}
+
+# Vectorize parse definitions.
+parse_defs <- function(result){
+  initialParse <- parse_results(result)
+  if (!is.null(initialParse)) {
+    parsed <- lapply(initialParse, parse_def)
+  } else {
+    parsed <- initialParse
+  }
+  parsed
+}
