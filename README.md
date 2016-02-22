@@ -7,7 +7,12 @@ This currently can only be installed from github:
 
 ```R
 # install.packages('devtools')
-devtools::install_github("mpancia/rUMLS")
+devtools::install_github("mpancia/rUMLS", build_vignettes=TRUE)
+```
+
+See the vignette for usage notes:
+```R
+vignette("rUMLS")
 ```
 
 ## Authentication
