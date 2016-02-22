@@ -1,8 +1,14 @@
 #' Get unique identifier.
 #'
 #' @export
+#' @return The unique identifier for an object, or a list of such things.
 setGeneric("ui", function(x) {
     standardGeneric("ui")
+})
+
+# Vectorize UI.
+setMethod("ui", signature(x = "list"), function(x) {
+  lapply(x, ui)
 })
 
 #' Get descriptors.
@@ -12,24 +18,26 @@ setGeneric("descr", function(x) {
     standardGeneric("descr")
 })
 
+# Vectorize descriptors.
 setMethod("descr", signature(x = "list"), function(x) {
     lapply(x, descr)
 })
 
 
-#' @export
+#' Get the synonyms for an object.
 #'
-#' @examples
+#' @export
+#' @return A list of synonyms.
 setGeneric("synonyms", function(x, ...) {
     standardGeneric("synonyms")
 })
 
 
 
-
-#' @export
+#' Get the relations associated to an object.
 #'
-#' @examples
+#' @export
+#' @return A \linkS4class{Relation} object or list of such things.
 setGeneric("relations", function(x) {
     standardGeneric("relations")
 })
@@ -37,6 +45,7 @@ setGeneric("relations", function(x) {
 #' Get the head UI for a relation.
 #'
 #' @export
+#' @return The UI of the target of a relationship, or a list of such things.
 setGeneric("headui", function(x) {
     standardGeneric("headui")
 })
@@ -45,19 +54,14 @@ setGeneric("headui", function(x) {
 
 #' Get the tail UI for a relation.
 #'
+#' @return The UI of the source of a relationship, or a list of such things.
 #' @export
 setGeneric("tailui", function(x) {
     standardGeneric("tailui")
 })
 
-#' Title
-#'
-#' @param x
-#'
-#' @return
+
 #' @export
-#'
-#' @examples
 setGeneric("related", function(x) {
     standardGeneric("related")
 })
@@ -87,6 +91,7 @@ setGeneric("neighborhood", function(x) {
 #' Get the source vocabulary for an object.
 #'
 #' @export
+#' @return The source vocabulary for an object, or a list of such things.
 setGeneric("source_vocab", function(x) {
     standardGeneric("source_vocab")
 })
@@ -98,14 +103,14 @@ setGeneric("source_vocab", function(x) {
 #' @param rel The input relation.
 #' @param type The type of relation.
 #'
-#' @return
+#' @return A label for the relation or a list of such things.
 #' @export
 #'
 setGeneric("relation_label", function(rel, type) {
     standardGeneric("relation_label")
 })
 
-#' #' Get UMLS concept definitions.
+#'  Get UMLS concept definitions.
 #'
 #' Retrieves the definitions of a given \linkS4class{Concept}, as per \href{https://documentation.uts.nlm.nih.gov/rest/definitions/}{the NLM}. This is vectorized over the input.
 #'

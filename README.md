@@ -27,4 +27,3 @@ You need an NLM license in order to use this package. Obtain one at [the NLM sit
 * [UMLS Login](https://www.nlm.nih.gov/research/umls/)
 * [UMLS Quickstart Login](https://www.nlm.nih.gov/research/umls/quickstart.html)
 * [Relationship Type Reference](https://www.nlm.nih.gov/research/umls/knowledge_sources/metathesaurus/release/abbreviations.html)
-browseVignettes(package = 'rUMLS')
