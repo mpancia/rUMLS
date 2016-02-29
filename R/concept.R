@@ -97,7 +97,7 @@ setMethod("get_concept", signature(CUI = "character"), function(CUI, info_ret = 
     name <- info$name
     if (info_ret == "none") {
         rels <- NULL
-        atoms <- NULL
+        atoms <- lazy(memoise(function() get_concept_atoms(CUI)))
     } else if (info_ret == "atoms") {
         rels <- NULL
         atoms <- get_concept_atoms(CUI)

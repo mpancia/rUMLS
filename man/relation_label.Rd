@@ -11,6 +11,9 @@ relation_label(rel, type)
 
 \item{type}{The type of relation.}
 }
+\value{
+A label for the relation or a list of such things.
+}
 \description{
 Retrieves the labels for a relationship \code{rel}. Vectorized over \code{rel}.
 }

@@ -6,6 +6,9 @@
 \usage{
 headui(x)
 }
+\value{
+The UI of the target of a relationship, or a list of such things.
+}
 \description{
 Get the head UI for a relation.
 }

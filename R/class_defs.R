@@ -51,7 +51,7 @@ print.Atom <- function(x, ..., n = NULL, width = NULL) {
 #' @slot relations The relations between the concept and other UMLS entities. May be a list of \linkS4class{Relation} objects or empty, depending on whether or not the relations have been retrieved.
 setClass("Concept", representation(cui = "character", suppressible = "logical", dateAdded = "Date", majorRevisionDate = "Date", status = "character",
     atomCount = "numeric", attributeCount = "numeric", cvMemberCount = "numeric", atomsURL = "character", definitionsURL = "charOrNULL", relationsURL = "character",
-    semanticTypes = "list", preferredAtom = "Atom", relationCount = "numeric", name = "character", atoms = "listOrNULL", relations = "listOrNULL"))
+    semanticTypes = "list", preferredAtom = "Atom", relationCount = "numeric", name = "character", atoms = "ANY", relations = "listOrNULL"))
 
 #' An S4 class to represent NLM-asserted relations.
 #'

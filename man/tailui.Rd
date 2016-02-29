@@ -6,6 +6,9 @@
 \usage{
 tailui(x)
 }
+\value{
+The UI of the source of a relationship, or a list of such things.
+}
 \description{
 Get the tail UI for a relation.
 }

@@ -1,7 +1,7 @@
 #' @include generics.R
 NULL
 #' Get UMLS source info for a concept.
-# 
+#
 #'
 #' @param source Source vocabulary.
 #' @param id Source ID.
@@ -15,7 +15,7 @@ get_source_info <- function(source, id) {
 }
 
 #' Get UMLS source info for a concept.
-# 
+#
 #'
 #' @param source Source vocabulary.
 #' @param id Source ID.
@@ -23,14 +23,14 @@ get_source_info <- function(source, id) {
 #' @export
 #'
 get_source_atoms <- function(source, id, sabs = NULL, ttys = NULL, language = NULL, includeObsolete = FALSE, includeSuppressible = FALSE, preferred = FALSE) {
-    exhaust_search(FUN = get_source_atoms_page, source = source, id = id, sabs = sabs, ttys = ttys, language = language, includeObsolete = includeObsolete, 
+    exhaust_search(FUN = get_source_atoms_page, source = source, id = id, sabs = sabs, ttys = ttys, language = language, includeObsolete = includeObsolete,
         includeSuppressible = includeSuppressible, preferred = preferred)
 }
 
 #' @rdname get_source_atoms
-get_source_atoms_page <- function(source, id, sabs = NULL, ttys = NULL, language = NULL, includeObsolete = FALSE, includeSuppressible = FALSE, pageNumber = 1, 
+get_source_atoms_page <- function(source, id, sabs = NULL, ttys = NULL, language = NULL, includeObsolete = FALSE, includeSuppressible = FALSE, pageNumber = 1,
     pageSize = 25, preferred = FALSE) {
-    params = list(ticket = get_service_ticket(get_TGT()), sabs = sabs, ttys = ttys, language = language, includeObsolete = includeObsolete, includeSuppressible = includeSuppressible, 
+    params = list(ticket = get_service_ticket(get_TGT()), sabs = sabs, ttys = ttys, language = language, includeObsolete = includeObsolete, includeSuppressible = includeSuppressible,
         pageNumber = pageNumber, pageSize = pageSize)
     if (preferred == TRUE) {
         r <- GET(restBaseURL, path = paste0("rest/content/current/", source, "/", id, "/atoms/preferred"), query = params)
@@ -49,13 +49,13 @@ get_source_atoms_page <- function(source, id, sabs = NULL, ttys = NULL, language
 #' @export
 #'
 get_source_parents <- function(source, id) {
-    exhaust_search(FUN = get_source_parents_page, source = source, id = id)
+    exhaust_search(FUN = get_source_parents_page, PARSER = parse_results, source = source, id = id)
 }
 
 #' @rdname get_source_parents
 get_source_parents_page <- function(source, id, pageNumber = 1, pageSize = 25) {
     params <- list(ticket = get_service_ticket(get_TGT()))
-    r <- GET(restBaseURL, path = paste0("rest/content/current/", source, "/", id, "/parents"), query = params)
+    r <- GET(restBaseURL, path = paste0("rest/content/current/source/", source, "/", id, "/parents"), query = params)
     r
 }
 
@@ -74,7 +74,7 @@ get_source_children <- function(source, id) {
 #' @rdname get_source_children
 get_source_children_page <- function(source, id, pageNumber = 1, pageSize = 25) {
     params <- list(ticket = get_service_ticket(get_TGT()))
-    r <- GET(restBaseURL, path = paste0("rest/content/current/", source, "/", id, "/children"), query = params)
+    r <- GET(restBaseURL, path = paste0("rest/content/current/source/", source, "/", id, "/children"), query = params)
     r
 }
 
@@ -93,7 +93,7 @@ get_source_descendants <- function(source, id) {
 #' @rdname get_source_descendants
 get_source_descendants_page <- function(source, id, pageNumber = 1, pageSize = 25) {
     params <- list(ticket = get_service_ticket(get_TGT()))
-    r <- GET(restBaseURL, path = paste0("rest/content/current/", source, "/", id, "/descendants"), query = params)
+    r <- GET(restBaseURL, path = paste0("rest/content/current/source/", source, "/", id, "/descendants"), query = params)
     r
 }
 
@@ -112,7 +112,7 @@ get_source_ancestors <- function(source, id) {
 #' @rdname get_source_ancestors
 get_source_ancestors_page <- function(source, id, pageNumber = 1, pageSize = 25) {
     params <- list(ticket = get_service_ticket(get_TGT()))
-    r <- GET(restBaseURL, path = paste0("rest/content/current/", source, "/", id, "/ancestors"), query = params)
+    r <- GET(restBaseURL, path = paste0("rest/content/current/source/", source, "/", id, "/ancestors"), query = params)
     r
 }
 
@@ -138,7 +138,7 @@ get_source_rels <- function(source, id, includeRelationLabels = NULL, includeAdd
 #' @rdname get_source_rels
 get_source_rels_page <- function(source, id, includeRelationLabels = NULL, includeAdditionalRelationLabels = NULL, pageNumber = 1, pageSize = 25) {
     params <- list(ticket = get_service_ticket(get_TGT()), includeRelationLabels = includeRelationLabels, includeAdditionalRelationLabels = includeAdditionalRelationLabels)
-    r <- GET(restBaseURL, path = paste0("rest/content/current/", source, "/", id, "/relations"), query = params)
+    r <- GET(restBaseURL, path = paste0("rest/content/current/source/", source, "/", id, "/relations"), query = params)
     r
 }
 
@@ -150,8 +150,8 @@ get_source_rels_page <- function(source, id, includeRelationLabels = NULL, inclu
 #' @export
 #'
 #' @examples
-get_source_attrs <- function(aui) {
+get_source_attrs <- function(source, id) {
     params <- list(ticket = get_service_ticket(get_TGT()))
-    r <- GET(restBaseURL, path = paste0("rest/content/current/AUI/", aui, "/attributes"), query = params)
+    r <- GET(restBaseURL, path = paste0("rest/content/current/source/", source, "/", id, "/attributes"), query = params)
     parse_results(r)
-} 
+}

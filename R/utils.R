@@ -23,12 +23,16 @@ exhaust_search <- function(FUN = searchFunction, PARSER = parseFunction, ...) {
 
 # Parser functions for various response types.
 parse_results <- function(result) {
+    if(status_code(result) != 200){
+      NULL
+    } else {
     resContent <- content(result)
     results <- resContent$result
     if (length(results) == 0) {
         NULL
     } else {
         results
+    }
     }
 }
 

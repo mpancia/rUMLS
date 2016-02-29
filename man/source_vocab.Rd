@@ -6,6 +6,9 @@
 \usage{
 source_vocab(x)
 }
+\value{
+The source vocabulary for an object, or a list of such things.
+}
 \description{
 Get the source vocabulary for an object.
 }

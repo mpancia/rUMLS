@@ -2,7 +2,7 @@
 % Please edit documentation in R/generics.R
 \name{definitions}
 \alias{definitions}
-\title{#' Get UMLS concept definitions.}
+\title{Get UMLS concept definitions.}
 \usage{
 definitions(CUI, sabs)
 }

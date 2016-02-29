@@ -6,6 +6,9 @@
 \usage{
 ui(x)
 }
+\value{
+The unique identifier for an object, or a list of such things.
+}
 \description{
 Get unique identifier.
 }
