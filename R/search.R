@@ -34,3 +34,25 @@ parse_search <- function(result) {
         results
     }
 }
+
+#' Obtain source vocabularies with a given licensing restriction level.
+#'
+#' Various UMLS source vocabularies have licensing restrictions, ranging from none (0) to level 4. See \href{https://www.nlm.nih.gov/research/umls/knowledge_sources/metathesaurus/release/license_agreement_appendix.html}{UMLS} for details.
+#'
+#' @param level The maximum restriction level.
+#' @param us Whether or not you are looking at US or non-US restriction levels.
+#'
+#' @return A list of source vocabularies that have restriction levels less than the entered level.
+#' @export
+#'
+#' @examples
+#' # Get all restriction-less US source vocabularies
+#' source_level(0)
+source_level <- function(level, us = TRUE){
+  restrictions <- data("restrictions")
+  if(us == TRUE){
+    restrictions[restrictions$restrictions_non_us <= level,"rootSource"]
+  } else {
+    restrictions[restrictions$restrictions_non_us <= level,"rootSource"]
+  }
+}
