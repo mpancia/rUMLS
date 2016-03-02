@@ -51,7 +51,7 @@ parse_search <- function(result) {
 source_level <- function(level, us = TRUE){
   restrictions <- data("restrictions")
   if(us == TRUE){
-    restrictions[restrictions$restrictions_non_us <= level,"rootSource"]
+    restrictions[restrictions$restrictions_us <= level,"rootSource"]
   } else {
     restrictions[restrictions$restrictions_non_us <= level,"rootSource"]
   }
