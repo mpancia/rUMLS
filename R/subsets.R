@@ -1,45 +1,32 @@
 #' Get information on all UMLS subsets.
 #'
-#' @return
+#' @return A list of information about all subsets. These are of UMLS class \code{Subset}.
 #' @export
 #'
 get_all_subset_info <- function() {
-    exhaust_search(FUN = get_all_subset_info_page, PARSER = parse_all_subsets)
+    exhaust_search(FUN = get_all_subset_info_page, PARSER = parse_results)
 }
 
 #' @rdname get_subset_info
 get_all_subset_info_page <- function(pageNumber = 1, pageSize = 25) {
-    params = list(ticket = get_service_ticket(get_TGT()), pageNumber = pageNumber, pageSize = pageSize)
+    params <- list(ticket = get_service_ticket(get_TGT()), pageNumber = pageNumber, pageSize = pageSize)
     r <- GET(restBaseURL, path = paste0("rest/content/current/subsets"), query = params)
     r
 }
 
-parse_all_subsets <- function(result) {
-    if (status_code(result) == 404) {
-        NULL
-    } else {
-        resContent <- content(result)
-        resContent$result
-    }
-}
 #' Get the info on a UMLS subset.
 #'
 #' @param subset
 #' @param language
-#' @param source
+#' @param sourceVocab
 #'
-#' @return
+#' @return A list of information. This is of UMLS class \code{Subset}.
 #' @export
 #'
-get_subset_info <- function(source, subset, language = NULL) {
-    exhaust_search(FUN = get_subset_info_page, PARSER = parse_atoms, subset = subset, language = language, source = source)
-}
-
-#' @rdname get_subset_info
-get_subset_info_page <- function(source, subset, language = NULL, pageNumber = 1, pageSize = 25) {
-    params = list(ticket = get_service_ticket(get_TGT()), language = language, pageNumber = pageNumber, pageSize = pageSize)
-    r <- GET(restBaseURL, path = paste0("rest/content/current/subsets/source/", source, "/", subset), query = params)
-    r
+get_subset_info <- function(sourceVocab, subset, language = NULL) {
+  params <- list(ticket = get_service_ticket(get_TGT()), language = language)
+  r <- GET(restBaseURL, path = paste0("rest/content/current/subsets/source/", sourceVocab, "/", subset), query = params)
+  parse_results(r)
 }
 
 #' Get the attributes of a UMLS subset.
@@ -48,57 +35,47 @@ get_subset_info_page <- function(source, subset, language = NULL, pageNumber = 1
 #' @param source
 #' @param language
 #'
-#' @return
+#' @return A list of attributes. These are of UMLS class \code{Attribute}.
 #' @export
 #'
 get_subset_attr <- function(source, subset, language = NULL) {
-    exhaust_search(FUN = get_subset_attr_page, PARSER = parse_atoms, subset = subset, language = language, source = source)
-}
-
-#' @rdname get_subset_attr
-get_subset_attr_page <- function(source, subset, language = NULL, pageNumber = 1, pageSize = 25) {
-    params = list(ticket = get_service_ticket(get_TGT()), language = language, pageNumber = pageNumber, pageSize = pageSize)
-    r <- GET(restBaseURL, path = paste0("rest/content/current/subsets/source/", source, "/", subset, "/attributes"), query = params)
-    r
+  params <- list(ticket = get_service_ticket(get_TGT()), language = language)
+  r <- GET(restBaseURL, path = paste0("rest/content/current/subsets/source/", source, "/", subset, "/attributes"), query = params)
+  parse_results(r)
 }
 
 #' Get members of a given subset.
 #'
-#' @param subset
-#' @param source
-#' @param language
+#' @param subset The subset.
+#' @param source The source.
+#' @param language The desired language.
 #'
-#' @return
+#' @return A list of results. These are of UMLS class \code{SourceConceptSubsetMember}.
 #' @export
 #'
-get_subset_mems <- function(subset, source, language = NULL) {
-    exhaust_search(FUN = get_subset_mems_page, PARSER = parse_atoms, subset = subset, language = language, source = source)
+get_subset_mems <- function(source, subset, language = NULL) {
+    exhaust_search(FUN = get_subset_mems_page, PARSER = parse_results, subset = subset, language = language, source = source)
 }
 
 #' @rdname get_subset_mems
 get_subset_mems_page <- function(subset, source, language = NULL, pageNumber = 1, pageSize = 25) {
-    params = list(ticket = get_service_ticket(get_TGT()), language = language, pageNumber = pageNumber, pageSize = pageSize, source = source)
+    params <- list(ticket = get_service_ticket(get_TGT()), language = language, pageNumber = pageNumber, pageSize = pageSize, source = source)
     r <- GET(restBaseURL, path = paste0("rest/content/current/subsets/source/", source, "/", subset, "/members"), query = params)
     r
 }
 
 #' Get information on a member of a given subset.
 #'
-#' @param subset
-#' @param source
-#' @param member
-#' @param language
+#' @param subset The subset.
+#' @param source The source.
+#' @param member The member.
+#' @param language The desired language.
 #'
-#' @return
+#' @return A list of attributes. These are of UMLS class \code{Attribute}.
 #' @export
 #'
 get_mem_info <- function(subset, source, member, language = NULL) {
-    exhaust_search(FUN = get_subset_mems_page, PARSER = parse_atoms, subset = subset, language = language, source = source, member = member)
+  params <- list(ticket = get_service_ticket(get_TGT()), language = language, source = source)
+  r <- GET(restBaseURL, path = paste0("rest/content/current/subsets/source/", source, "/", subset, "/members/", member, "/attributes"), query = params)
+  parse_results(r)
 }
-
-#' @rdname get_mem_info
-get_subset_mems_page <- function(subset, source, member, language = NULL, pageNumber = 1, pageSize = 25) {
-    params = list(ticket = get_service_ticket(get_TGT()), language = language, pageNumber = pageNumber, pageSize = pageSize, source = source)
-    r <- GET(restBaseURL, path = paste0("rest/content/current/subsets/source/", source, "/", subset, "/members/", member, "/attributes"), query = params)
-    r
-} 

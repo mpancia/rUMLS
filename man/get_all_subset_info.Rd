@@ -6,6 +6,9 @@
 \usage{
 get_all_subset_info()
 }
+\value{
+A list of information about all subsets. These are of UMLS class \code{Subset}.
+}
 \description{
 Get information on all UMLS subsets.
 }

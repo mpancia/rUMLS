@@ -5,13 +5,20 @@
 \alias{get_subset_mems_page}
 \title{Get members of a given subset.}
 \usage{
-get_subset_mems(subset, source, language = NULL)
+get_subset_mems(source, subset, language = NULL)
 
-get_subset_mems_page(subset, source, member, language = NULL,
-  pageNumber = 1, pageSize = 25)
+get_subset_mems_page(subset, source, language = NULL, pageNumber = 1,
+  pageSize = 25)
 }
 \arguments{
-\item{language}{}
+\item{source}{The source.}
+
+\item{subset}{The subset.}
+
+\item{language}{The desired language.}
+}
+\value{
+A list of results. These are of UMLS class \code{SourceConceptSubsetMember}.
 }
 \description{
 Get members of a given subset.

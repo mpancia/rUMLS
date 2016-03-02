@@ -3,18 +3,17 @@
 \name{get_all_subset_info_page}
 \alias{get_all_subset_info_page}
 \alias{get_subset_info}
-\alias{get_subset_info_page}
 \title{Get the info on a UMLS subset.}
 \usage{
 get_all_subset_info_page(pageNumber = 1, pageSize = 25)
 
-get_subset_info(source, subset, language = NULL)
-
-get_subset_info_page(source, subset, language = NULL, pageNumber = 1,
-  pageSize = 25)
+get_subset_info(sourceVocab, subset, language = NULL)
 }
 \arguments{
-\item{source}{}
+\item{sourceVocab}{}
+}
+\value{
+A list of information. This is of UMLS class \code{Subset}.
 }
 \description{
 Get the info on a UMLS subset.

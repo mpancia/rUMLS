@@ -2,16 +2,21 @@
 % Please edit documentation in R/concept.R
 \name{get_concept_info}
 \alias{get_concept_info}
-\title{Get UMLS concept info}
+\title{Get UMLS concept info.}
 \usage{
 get_concept_info(CUI)
 }
 \arguments{
 \item{CUI}{CUI of interest.}
-
-\item{sabs}{Source vocabularies, comma separated.}
+}
+\value{
+Information about the CUI. This is of UMLS class \code{Concept}.
 }
 \description{
-Get UMLS concept info
+Get UMLS concept info.
+}
+\examples{
+# Get info for concept C0011884
+info <- get_concept_info("C0011884")
 }
 

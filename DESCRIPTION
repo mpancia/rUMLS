@@ -13,6 +13,9 @@ Imports:
     httr,
     xml2,
     rvest,
+    data.tree,
+    magrittr,
+    rlist,
     stringr
 URL: https://github.com/mpancia/rUMLS/
 BugReports: https://github.com/mpancia/rUMLS/issues

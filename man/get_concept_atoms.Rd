@@ -26,9 +26,13 @@ get_concept_atoms_page(CUI, sabs = NULL, ttys = NULL, language = NULL,
 \item{includeSuppressible}{Whether or not to include suppressible atoms.}
 }
 \value{
-A list of \linkS4class{Atom} objects.
+A list of Atoms, of UMLS class \code{Atom}.
 }
 \description{
 Retrieves the atoms that are associated to a given \linkS4class{Concept}.
+}
+\examples{
+# Get atoms for concept C0011884
+atoms <- get_concept_atoms("C0011884")
 }
 

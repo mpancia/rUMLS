@@ -2,16 +2,21 @@
 % Please edit documentation in R/subsets.R
 \name{get_mem_info}
 \alias{get_mem_info}
-\alias{get_subset_mems_page}
 \title{Get information on a member of a given subset.}
 \usage{
 get_mem_info(subset, source, member, language = NULL)
-
-get_subset_mems_page(subset, source, member, language = NULL,
-  pageNumber = 1, pageSize = 25)
 }
 \arguments{
-\item{language}{}
+\item{subset}{The subset.}
+
+\item{source}{The source.}
+
+\item{member}{The member.}
+
+\item{language}{The desired language.}
+}
+\value{
+A list of attributes. These are of UMLS class \code{Attribute}.
 }
 \description{
 Get information on a member of a given subset.

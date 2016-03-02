@@ -2,16 +2,15 @@
 % Please edit documentation in R/subsets.R
 \name{get_subset_attr}
 \alias{get_subset_attr}
-\alias{get_subset_attr_page}
 \title{Get the attributes of a UMLS subset.}
 \usage{
 get_subset_attr(source, subset, language = NULL)
-
-get_subset_attr_page(source, subset, language = NULL, pageNumber = 1,
-  pageSize = 25)
 }
 \arguments{
 \item{language}{}
+}
+\value{
+A list of attributes. These are of UMLS class \code{Attribute}.
 }
 \description{
 Get the attributes of a UMLS subset.
