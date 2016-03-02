@@ -1,4 +1,3 @@
-#' @include generics.R
 #' @importFrom dplyr bind_rows
 NULL
 #' @export

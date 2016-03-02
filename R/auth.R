@@ -1,4 +1,3 @@
-
 authBaseURL <- "https://utslogin.nlm.nih.gov"
 authEndpoint <- "/cas/v1/tickets"
 
@@ -29,7 +28,7 @@ get_TGT <- function(name = NULL, pass = NULL) {
     } else if (is.null(TGT) && (is.null(name) | !is.null(pass))) {
         stop("No username/password provided.")
     }
-    
+
     TGT
 }
 
@@ -78,13 +77,13 @@ auth_UMLS <- function() {
 UMLS_creds <- function(force = FALSE) {
     user <- Sys.getenv("UMLS_USER")
     pass <- Sys.getenv("UMLS_PASS")
-    if (!identical(user, "") && !identical(pass, "") && !force) 
+    if (!identical(user, "") && !identical(pass, "") && !force)
         return(list(user = user, pass = pass))
-    
+
     if (!interactive()) {
         stop("Please set env vars UMLS_USER, UMLS_PASS to your UMLS username/password respectively.", call. = FALSE)
     }
-    
+
     message("Couldn't find env vars UMLS_USER, UMLS_PASS. See ?UMLS_creds for more details.")
     message("Please enter your username and press enter:")
     user <- readline(": ")
@@ -93,9 +92,9 @@ UMLS_creds <- function(force = FALSE) {
     if (identical(user, "") | identical(pass, "")) {
         stop("User/password entry failed", call. = FALSE)
     }
-    
+
     message("Updating env vars.")
     Sys.setenv(UMLS_USER = user, UMLS_PASS = pass)
-    
+
     list(user = user, pass = pass)
-} 
+}

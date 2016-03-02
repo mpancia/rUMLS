@@ -1,4 +1,3 @@
-#' @include generics.R
 #' @import data.tree
 NULL
 #' Get UMLS source info for a concept.
@@ -73,7 +72,16 @@ get_source_attrs <- function(source, id) {
     parse_results(r)
 }
 
+#' Get source familial relationships.
+#'
+#' @param source The source vocabulary.
+#' @param id The internal source ID.
+#' @param type The type of familial relationship to obtain. Can be one of \code{parents, children, ancestors, descendants}. See the possible \code{/source/id/} endpoints at the UMLS \href{https://documentation.uts.nlm.nih.gov/rest/home.html}{UMLS}.
+#'
+#' @return A list of results. These are of class \code{SourceAtomCluster} in the UMLS.
 #' @export
+#'
+#' @examples
 get_source_family <- function(source, id, type) {
   exhaust_search(FUN = get_source_family_page, PARSER = parse_results, source = source, id = id, type = type)
 }
@@ -84,8 +92,35 @@ get_source_family_page <- function(source, id, pageNumber = 1, pageSize = 25, ty
   r
 }
 
+#' @rdname get_source_family
+get_source_parents <- function(source, id){
+  get_source_family(source, id, "parents")
+}
 
+#' @rdname get_source_family
+get_source_children <- function(source, id){
+  get_source_family(source, id, "children")
+}
+
+#' @rdname get_source_family
+get_source_ancestors <- function(source, id){
+  get_source_family(source, id, "ancestors")
+}
+
+#' @rdname get_source_family
+get_source_descendants <- function(source, id){
+  get_source_family(source, id, "descendants")
+}
+
+#' Get all of the parents of a given source item.
+#'
+#' @param source The source vocabulary.
+#' @param id The internal source ID.
+#'
+#' @return A \code{data.tree} which contains the tree of parents.
 #' @export
+#'
+#' @examples
 get_all_parents <- function(source, id){
   curNode <- Node$new(id)
   get_all_parents_rec(source, id, curNode)
@@ -93,7 +128,7 @@ get_all_parents <- function(source, id){
 }
 
 get_all_parents_rec <- function(source, id, curNode ){
-  results <- get_source_family(source, id, type = "parents")
+  results <- get_source_parents(source, id)
   if(!is.null(results) ){
   uis <- sapply(results, function(x) x$ui)
   nodes <- lapply(1:length(uis), function(x) curNode$AddChild(uis[[x]], desc = results[[x]]$name ))
@@ -101,7 +136,21 @@ get_all_parents_rec <- function(source, id, curNode ){
   }
 }
 
+
+#' Get all of the children of a given source item.
+#'
+#' @param source The source vocabulary.
+#' @param id The internal source ID.
+#'
+#' @return A \code{data.tree} which contains the tree of children.
 #' @export
+#'
+#' @examples
+#' # Get all the CPT codes that are children of the CUI \code{C0519273}.
+#' conceptAtoms <- get_concept_atoms("C0519273")
+#' cptCodes <- conceptAtoms %>% list.filter(rootSource == 'CPT') %>% list.select(code) %>% list.apply(function(x) rev(str_split(x, "/")[[1]])[[1]])
+#' cptKids <- cptCodes %>% list.apply(function(x) get_all_children("CPT", x))
+#' cptLeaves <- cptKids %>% list.apply(function(x) x$Get('id', filterFun = isLeaf)) %>% list.apply(function(x) data.frame(proc_code = x, desc = names(x))) %>% bind_rows()
 get_all_children <- function(source, id){
   curNode <- Node$new(id)
   get_all_children_rec(source, id, curNode)
@@ -109,7 +158,7 @@ get_all_children <- function(source, id){
 }
 
 get_all_children_rec <- function(source, id, curNode ){
-  results <- get_source_family(source, id, type = "children")
+  results <- get_source_children(source, id)
   if(!is.null(results) ){
     uis <- sapply(results, function(x) x$ui)
     nodes <- lapply(1:length(uis), function(x) curNode$AddChild(id = uis[[x]], desc = results[[x]]$name ))
@@ -117,4 +166,4 @@ get_all_children_rec <- function(source, id, curNode ){
   }
 }
 
-#kids <- get_concept_atoms("C0519273") %>% list.filter(rootSource == 'CPT') %>% list.select(code) %>% list.apply(function(x) rev(str_split(x, "/")[[1]])[[1]]) %>% list.apply(function(x) get_all_children("CPT", x)) %>% list.apply(function(x) x$Get('id', filterFun = isLeaf)) %>% list.apply(function(x) data.frame(proc_code = x, desc = names(x))) %>% bind_rows()
+

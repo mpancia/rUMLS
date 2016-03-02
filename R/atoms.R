@@ -1,4 +1,3 @@
-#' @include generics.R
 NULL
 
 #' @export
