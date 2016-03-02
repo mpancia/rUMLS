@@ -93,21 +93,25 @@ get_source_family_page <- function(source, id, pageNumber = 1, pageSize = 25, ty
 }
 
 #' @rdname get_source_family
+#' @export
 get_source_parents <- function(source, id){
   get_source_family(source, id, "parents")
 }
 
 #' @rdname get_source_family
+#' @export
 get_source_children <- function(source, id){
   get_source_family(source, id, "children")
 }
 
 #' @rdname get_source_family
+#' @export
 get_source_ancestors <- function(source, id){
   get_source_family(source, id, "ancestors")
 }
 
 #' @rdname get_source_family
+#' @export
 get_source_descendants <- function(source, id){
   get_source_family(source, id, "descendants")
 }
@@ -150,7 +154,7 @@ get_all_parents_rec <- function(source, id, curNode ){
 #' conceptAtoms <- get_concept_atoms("C0519273")
 #' cptCodes <- conceptAtoms %>% list.filter(rootSource == 'CPT') %>% list.select(code) %>% list.apply(function(x) rev(str_split(x, "/")[[1]])[[1]])
 #' cptKids <- cptCodes %>% list.apply(function(x) get_all_children("CPT", x))
-#' cptLeaves <- cptKids %>% list.apply(function(x) x$Get('id', filterFun = isLeaf)) %>% list.apply(function(x) data.frame(proc_code = x, desc = names(x))) %>% bind_rows()
+#' cptLeaves <- cptKids %>% list.apply(function(x) x$Get('desc', filterFun = isLeaf)) %>% list.apply(function(x) data.frame(proc_code = names(x), desc = x )) %>% bind_rows()
 get_all_children <- function(source, id){
   curNode <- Node$new(id)
   get_all_children_rec(source, id, curNode)
@@ -161,7 +165,7 @@ get_all_children_rec <- function(source, id, curNode ){
   results <- get_source_children(source, id)
   if(!is.null(results) ){
     uis <- sapply(results, function(x) x$ui)
-    nodes <- lapply(1:length(uis), function(x) curNode$AddChild(id = uis[[x]], desc = results[[x]]$name ))
+    nodes <- lapply(1:length(uis), function(x) curNode$AddChild(uis[[x]], desc = results[[x]]$name ))
     sapply(1:length(nodes), function(x) get_all_children_rec(source, uis[[x]], nodes[[x]]))
   }
 }

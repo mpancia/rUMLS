@@ -18,21 +18,25 @@ get_atom_family_page <- function(AUI, type, pageNumber = 1, pageSize = 25) {
 }
 
 #' @rdname get_atom_family
+#' @export
 get_atom_parents <- function(AUI){
   get_atom_family(AUI, "parents")
 }
 
 #' @rdname get_atom_family
+#' @export
 get_atom_children <- function(AUI){
   get_atom_family(AUI, "children")
 }
 
 #' @rdname get_atom_family
+#' @export
 get_atom_ancestors <- function(AUI){
   get_atom_family(AUI, "ancestors")
 }
 
 #' @rdname get_atom_family
+#' @export
 get_atom_descendants <- function(AUI){
   get_atom_family(AUI, "descendants")
 }
