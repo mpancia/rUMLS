@@ -27,7 +27,6 @@ search_UMLS <- function(search, inputType = "sourceUi", includeObsolete = FALSE,
     results
 }
 
-#' @rdname search_UMLS
 search_UMLS_page <- function(search, inputType = "sourceUi", includeObsolete = FALSE, includeSuppressible = FALSE, sabs = NULL, searchType = "words",
     pageNumber = 1, pageSize = 25) {
     ticket <- get_service_ticket(get_TGT())
@@ -37,7 +36,6 @@ search_UMLS_page <- function(search, inputType = "sourceUi", includeObsolete = F
     r
 }
 
-#' @rdname search_UMLS
 parse_search <- function(result) {
     resContent <- content(result)
     results <- resContent$result$results
