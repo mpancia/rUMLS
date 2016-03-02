@@ -2,14 +2,10 @@
 % Please edit documentation in R/sources.R
 \name{get_source_rels}
 \alias{get_source_rels}
-\alias{get_source_rels_page}
 \title{Get relations for source object.}
 \usage{
 get_source_rels(source, id, includeRelationLabels = NULL,
   includeAdditionalRelationLabels = NULL)
-
-get_source_rels_page(source, id, includeRelationLabels = NULL,
-  includeAdditionalRelationLabels = NULL, pageNumber = 1, pageSize = 25)
 }
 \description{
 Get relations for source object.

@@ -5,8 +5,7 @@
 \title{Search the UMLS.}
 \usage{
 search_UMLS(search, inputType = "sourceUi", includeObsolete = FALSE,
-  includeSuppressible = FALSE, sabs = NULL, searchType = "words",
-  response_type = "list")
+  includeSuppressible = FALSE, sabs = NULL, searchType = "words")
 }
 \arguments{
 \item{search}{The search input.}
@@ -20,11 +19,9 @@ search_UMLS(search, inputType = "sourceUi", includeObsolete = FALSE,
 \item{sabs}{Source vocabularies to search. A list of elements from the \href{http://www.nlm.nih.gov/research/umls/knowledge_sources/metathesaurus/release/source_vocabularies.html}{valid source vocabularies.}}
 
 \item{searchType}{Type of search. Can be one of \code{'exact','words','leftTruncation', 'rightTruncation','approximate', 'normalizedString'}.}
-
-\item{response_type}{What sort of information to obtain. This can be one of \code{'list', }}
 }
 \value{
-If \code{response_type == 'list'}, then a list of results. Otherwise, returns a list of \linkS4class{Concept} objects with the\code{response_type} info included.
+A list of results.
 }
 \description{
 This allows for searching of the UMLS. The API parameters correspond to those on the \href{https://documentation.uts.nlm.nih.gov/rest/search/#query-parameters}{NLM website.}

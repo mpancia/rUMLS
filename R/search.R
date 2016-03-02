@@ -8,18 +8,12 @@
 #' @param includeSuppressible Whether or not to include suppressible results.
 #' @param sabs Source vocabularies to search. A list of elements from the \href{http://www.nlm.nih.gov/research/umls/knowledge_sources/metathesaurus/release/source_vocabularies.html}{valid source vocabularies.}
 #' @param searchType Type of search. Can be one of \code{'exact','words','leftTruncation', 'rightTruncation','approximate', 'normalizedString'}.
-#' @param response_type What sort of information to obtain. This can be one of \code{'list', }
-#' @return If \code{response_type == 'list'}, then a list of results. Otherwise, returns a list of \linkS4class{Concept} objects with the\code{response_type} info included.
+#' @return A list of results.
 #' @export
-search_UMLS <- function(search, inputType = "sourceUi", includeObsolete = FALSE, includeSuppressible = FALSE, sabs = NULL, searchType = "words",
-    response_type = "list") {
+search_UMLS <- function(search, inputType = "sourceUi", includeObsolete = FALSE, includeSuppressible = FALSE, sabs = NULL, searchType = "words") {
     results <- exhaust_search(FUN = search_UMLS_page, PARSER = parse_search, search = search, inputType = inputType, includeObsolete = includeObsolete,
         includeSuppressible = includeSuppressible, sabs = sabs, searchType = searchType)
-    if (response_type == "list") {
-        results
-    } else {
-        lapply(results, function(x) get_concept(x, info_ret = response_type))
-    }
+    results
 }
 
 search_UMLS_page <- function(search, inputType = "sourceUi", includeObsolete = FALSE, includeSuppressible = FALSE, sabs = NULL, searchType = "words",

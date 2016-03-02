@@ -4,10 +4,7 @@
 \alias{get_source_attrs}
 \title{Get source-asserted attributes.}
 \usage{
-get_source_attrs(aui)
-}
-\arguments{
-\item{AUI}{}
+get_source_attrs(source, id)
 }
 \description{
 Get source-asserted attributes.

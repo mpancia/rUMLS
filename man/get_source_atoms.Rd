@@ -2,15 +2,10 @@
 % Please edit documentation in R/sources.R
 \name{get_source_atoms}
 \alias{get_source_atoms}
-\alias{get_source_atoms_page}
 \title{Get UMLS source info for a concept.}
 \usage{
 get_source_atoms(source, id, sabs = NULL, ttys = NULL, language = NULL,
   includeObsolete = FALSE, includeSuppressible = FALSE, preferred = FALSE)
-
-get_source_atoms_page(source, id, sabs = NULL, ttys = NULL,
-  language = NULL, includeObsolete = FALSE, includeSuppressible = FALSE,
-  pageNumber = 1, pageSize = 25, preferred = FALSE)
 }
 \arguments{
 \item{source}{Source vocabulary.}

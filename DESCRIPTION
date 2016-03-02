@@ -8,7 +8,7 @@ Description: An R Interface To The NLM Unified Medical Language System.
     graphical structure of the Metathesaurus.
 License: MIT
 LazyData: TRUE
-Imports: 
+Imports:
     dplyr,
     httr,
     xml2,
@@ -17,8 +17,7 @@ Imports:
 URL: https://github.com/mpancia/rUMLS/
 BugReports: https://github.com/mpancia/rUMLS/issues
 RoxygenNote: 5.0.1
-Collate: 
-    'class_defs.R'
+Collate:
     'generics.R'
     'atoms.R'
     'auth.R'
@@ -30,6 +29,7 @@ Collate:
     'subsets.R'
     'utils.R'
     'zzz.R'
-Suggests: knitr,
+Suggests:
+    knitr,
     rmarkdown
 VignetteBuilder: knitr
