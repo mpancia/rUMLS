@@ -49,10 +49,15 @@ parse_search <- function(result) {
 #' # Get all restriction-less US source vocabularies
 #' source_level(0)
 source_level <- function(level, us = TRUE){
-  restrictions <- data("restrictions")
+  data("restrictions")
   if(us == TRUE){
-    restrictions[restrictions$restrictions_us <= level,"rootSource"]
+    umls_restrictions[umls_restrictions$restrictions_us <= level,"rootSource"]
   } else {
-    restrictions[restrictions$restrictions_non_us <= level,"rootSource"]
+    umls_restrictions[umls_restrictions$restrictions_non_us <= level,"rootSource"]
   }
+}
+
+filter_source_level <- function(results, level, us = TRUE){
+  goodVocabs <- source_level(level, us)
+  results %>% list.filter(rootSource %in% goodVocabs)
 }
