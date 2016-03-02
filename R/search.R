@@ -1,3 +1,6 @@
+#' @importFrom magrittr %>%
+#' @importFrom rlist list.filter
+NULL
 #' Search the UMLS.
 #'
 #' This allows for searching of the UMLS. The API parameters correspond to those on the \href{https://documentation.uts.nlm.nih.gov/rest/search/#query-parameters}{NLM website.}
@@ -51,12 +54,28 @@ parse_search <- function(result) {
 source_level <- function(level, us = TRUE){
   data("restrictions")
   if(us == TRUE){
-    umls_restrictions[umls_restrictions$restrictions_us <= level,"rootSource"]
+    umls_restrictions[umls_restrictions$restrictions_us <= level,]$rootSource
   } else {
-    umls_restrictions[umls_restrictions$restrictions_non_us <= level,"rootSource"]
+    umls_restrictions[umls_restrictions$restrictions_non_us <= level,]$rootSource
   }
 }
 
+
+#' Filter results to include source vocabularies with a particular restriction level.
+#'
+#' See also \code{\link{source_level}}.
+#'
+#' @param results Search results. Should be a list of things with a \code{rootSource} attribute.
+#' @param level The maximum restriction.
+#' @param us Whether or not you are looking at US or non-US restriction levels.
+#'
+#' @return The results, filtered to include only those in source vocabularies with an appropriate restriction level.
+#' @export
+#'
+#' @examples
+#' # Get diabetic retinopathy results that are from source vocabularies with restriction level at most 1.
+#' search <- search_UMLS("diabetic retinopathy")
+#' filteredSearch <- search %>% filter_source_level(1)
 filter_source_level <- function(results, level, us = TRUE){
   goodVocabs <- source_level(level, us)
   results %>% list.filter(rootSource %in% goodVocabs)
