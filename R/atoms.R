@@ -1,3 +1,7 @@
+get_atom_rels <- function(AUI){
+
+}
+
 #' Get familial relationships for a given Atom.
 #'
 #' @param AUI The AUI of interest.

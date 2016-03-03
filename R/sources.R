@@ -23,7 +23,7 @@ get_source_info <- function(source, id) {
 #' @export
 #'
 get_source_atoms <- function(source, id, sabs = NULL, ttys = NULL, language = NULL, includeObsolete = FALSE, includeSuppressible = FALSE, preferred = FALSE) {
-    exhaust_search(FUN = get_source_atoms_page, source = source, id = id, sabs = sabs, ttys = ttys, language = language, includeObsolete = includeObsolete,
+    exhaust_search(FUN = get_source_atoms_page,PARSER = parse_results, source = source, id = id, sabs = sabs, ttys = ttys, language = language, includeObsolete = includeObsolete,
         includeSuppressible = includeSuppressible, preferred = preferred)
 }
 
@@ -55,11 +55,11 @@ get_source_rels <- function(source, id, includeRelationLabels = NULL, includeAdd
     if (!is.null(includeAdditionalRelationLabels)) {
         includeAdditionalRelationLabels <- paste(includeAdditionalRelationLabels, collapse = ",")
     }
-    exhaust_search(FUN = get_source_rels_page, source = source, id = id, includeRelationLabels = includeRelationLabels, includeAdditionalRelationLabels = includeAdditionalRelationLabels)
+    exhaust_search(FUN = get_source_rels_page, PARSER = parse_results, source = source, id = id, includeRelationLabels = includeRelationLabels, includeAdditionalRelationLabels = includeAdditionalRelationLabels)
 }
 
 get_source_rels_page <- function(source, id, includeRelationLabels = NULL, includeAdditionalRelationLabels = NULL, pageNumber = 1, pageSize = 25) {
-    params <- list(ticket = get_service_ticket(get_TGT()), includeRelationLabels = includeRelationLabels, includeAdditionalRelationLabels = includeAdditionalRelationLabels)
+    params <- list(ticket = get_service_ticket(get_TGT()), includeRelationLabels = includeRelationLabels, includeAdditionalRelationLabels = includeAdditionalRelationLabels, pageNumber = pageNumber, pageSize = pageSize)
     r <- GET(restBaseURL, path = paste0("rest/content/current/source/", source, "/", id, "/relations"), query = params)
     r
 }
