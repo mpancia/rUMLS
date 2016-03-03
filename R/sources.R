@@ -32,9 +32,9 @@ get_source_atoms_page <- function(source, id, sabs = NULL, ttys = NULL, language
     params = list(ticket = get_service_ticket(get_TGT()), sabs = sabs, ttys = ttys, language = language, includeObsolete = includeObsolete, includeSuppressible = includeSuppressible,
         pageNumber = pageNumber, pageSize = pageSize)
     if (preferred == TRUE) {
-        r <- GET(restBaseURL, path = paste0("rest/content/current/", source, "/", id, "/atoms/preferred"), query = params)
+        r <- GET(restBaseURL, path = paste0("rest/content/current/source/", source, "/", id, "/atoms/preferred"), query = params)
     } else {
-        r <- GET(restBaseURL, path = paste0("rest/content/current/", source, "/", id, "/atoms"), query = params)
+        r <- GET(restBaseURL, path = paste0("rest/content/current/source/", source, "/", id, "/atoms"), query = params)
     }
     r
 }
