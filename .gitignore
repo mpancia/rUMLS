@@ -5,3 +5,5 @@
 .httr-oauth
 inst/doc
 R/addons.R
+packrat/lib*/
+packrat/src/
