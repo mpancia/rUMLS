@@ -92,10 +92,10 @@
 <h2 class="hasAnchor">
 <a href="#authentication" class="anchor"></a>Authentication</h2>
 <p>This package requires a UMLS license, which includes user credentials. By using this package, you are subject to the licensing agreements that you agree to with the NLM.</p>
-<p>You can authenticate with the UMLS on a per-session basis using the <code>auth_UMLS()</code> function, but it is easier to include the relevant credentials in your <code>.Renviron</code> file located in your home directory. Add the following lines to your file:</p>
+<p>You can authenticate with the UMLS on a per-session basis using the <code><a href="../reference/auth_UMLS.html">auth_UMLS()</a></code> function, but it is easier to include the relevant credentials in your <code>.Renviron</code> file located in your home directory. Add the following lines to your file:</p>
 <pre><code>UMLS_USER=&lt;username&gt;
 UMLS_PASS=&lt;password&gt;</code></pre>
-<p>Once these are set, <code>auth_UMLS()</code> will load your credentials and authenticate you with the UMLS. If you wish to reset your credentials, use the <code>umls_creds()</code> function.</p>
+<p>Once these are set, <code><a href="../reference/auth_UMLS.html">auth_UMLS()</a></code> will load your credentials and authenticate you with the UMLS. If you wish to reset your credentials, use the <code>umls_creds()</code> function.</p>
 </div>
 <div id="structure-of-the-umls" class="section level2">
 <h2 class="hasAnchor">

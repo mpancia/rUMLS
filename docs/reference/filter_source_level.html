@@ -96,7 +96,7 @@
     </div>
 
     
-    <p>See also <code>source_level</code>.</p>
+    <p>See also <code><a href='source_level.html'>source_level</a></code>.</p>
     
 
     <pre class="usage"><span class='fu'>filter_source_level</span>(<span class='no'>results</span>, <span class='no'>level</span>, <span class='kw'>us</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
@@ -125,7 +125,7 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Get diabetic retinopathy results that are from source vocabularies with restriction level at most 1.</span>
-<span class='no'>search</span> <span class='kw'>&lt;-</span> <span class='fu'>search_UMLS</span>(<span class='st'>"diabetic retinopathy"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in get_TGT(): No username/password provided.</span></div><div class='input'><span class='no'>filteredSearch</span> <span class='kw'>&lt;-</span> <span class='no'>search</span> <span class='kw'>%&gt;%</span> <span class='fu'>filter_source_level</span>(<span class='fl'>1</span>)</div><div class='output co'>#&gt; <span class='error'>Error in dots[[1L]][[1L]]: object of type 'closure' is not subsettable</span></div></pre>
+<span class='no'>search</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='search_UMLS.html'>search_UMLS</a></span>(<span class='st'>"diabetic retinopathy"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in get_TGT(): No username/password provided.</span></div><div class='input'><span class='no'>filteredSearch</span> <span class='kw'>&lt;-</span> <span class='no'>search</span> <span class='kw'>%&gt;%</span> <span class='fu'>filter_source_level</span>(<span class='fl'>1</span>)</div><div class='output co'>#&gt; <span class='error'>Error in dots[[1L]][[1L]]: object of type 'closure' is not subsettable</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
