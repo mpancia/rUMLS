@@ -4,3 +4,4 @@
 ^packrat/
 ^\.Rprofile$
 ^LICENSE\.md$
+^\.github$

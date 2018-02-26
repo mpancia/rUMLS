@@ -27,3 +27,8 @@ You need an NLM license in order to use this package. Obtain one at [the NLM sit
 * [UMLS Login](https://www.nlm.nih.gov/research/umls/)
 * [UMLS Quickstart Login](https://www.nlm.nih.gov/research/umls/quickstart.html)
 * [Relationship Type Reference](https://www.nlm.nih.gov/research/umls/knowledge_sources/metathesaurus/release/abbreviations.html)
+
+# Code of Conduct 
+
+Please note that this project is released with a [Contributor Code of Conduct](.github/CODE_OF_CONDUCT.md).
+By participating in this project you agree to abide by its terms.

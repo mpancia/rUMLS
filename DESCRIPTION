@@ -1,5 +1,5 @@
-Package: rUMLS
 Type: Package
+Package: rUMLS
 Title: An R Interface To The NLM Unified Medical Language System
 Version: 0.1.0
 Authors@R: person("Matthew", "Pancia", email = "msp@themsp.org", role = c("aut", "cre"))
@@ -7,18 +7,22 @@ Description: An R Interface To The NLM Unified Medical Language System.
     This package provides search capabilities and functions to interact with the
     graphical structure of the Metathesaurus.
 License: MIT + file LICENSE
-LazyData: TRUE
-Imports:
-    dplyr,
-    httr,
-    xml2,
-    rvest,
-    data.tree,
-    magrittr,
-    rlist,
-    stringr
 URL: https://github.com/mpancia/rUMLS/
 BugReports: https://github.com/mpancia/rUMLS/issues
+Imports: 
+    data.tree,
+    dplyr,
+    httr,
+    magrittr,
+    rlist,
+    rvest,
+    stringr,
+    xml2
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+LazyData: TRUE
 RoxygenNote: 5.0.1
 Collate:
     'atoms.R'
@@ -30,7 +34,3 @@ Collate:
     'subsets.R'
     'utils.R'
     'zzz.R'
-Suggests:
-    knitr,
-    rmarkdown
-VignetteBuilder: knitr
