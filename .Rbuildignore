@@ -3,3 +3,4 @@
 ^\.httr-oauth$
 ^packrat/
 ^\.Rprofile$
+^LICENSE\.md$

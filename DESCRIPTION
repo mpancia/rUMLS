@@ -6,7 +6,7 @@ Authors@R: person("Matthew", "Pancia", email = "msp@themsp.org", role = c("aut",
 Description: An R Interface To The NLM Unified Medical Language System.
     This package provides search capabilities and functions to interact with the
     graphical structure of the Metathesaurus.
-License: MIT
+License: MIT + file LICENSE
 LazyData: TRUE
 Imports:
     dplyr,
