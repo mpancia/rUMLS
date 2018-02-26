@@ -23,7 +23,7 @@ You need an NLM license in order to use this package. Obtain one at [the NLM sit
 ## Useful links
 
 * [Metathesaurus Reference](http://www.ncbi.nlm.nih.gov/books/NBK9684/)
-* [API Reference](https://www.nlm.nih.gov/api/)
+* [API Reference](https://documentation.uts.nlm.nih.gov/rest/home.html)
 * [UMLS Login](https://www.nlm.nih.gov/research/umls/)
 * [UMLS Quickstart Login](https://www.nlm.nih.gov/research/umls/quickstart.html)
 * [Relationship Type Reference](https://www.nlm.nih.gov/research/umls/knowledge_sources/metathesaurus/release/abbreviations.html)

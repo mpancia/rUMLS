@@ -42,6 +42,16 @@ Source: CRAN
 Version: 3.98-1.10
 Hash: 4822e9bd2d5ea97804878255829d8981
 
+Package: ansistrings
+Source: github
+Version: 1.0.0.9000
+Hash: 2a259b233274b2cd9b832c8dd1ec7ce9
+Requires: crayon
+GithubRepo: ansistrings
+GithubUsername: r-lib
+GithubRef: master
+GithubSha1: 3f5badd713b5222d68657f731b33dc92aee1a602
+
 Package: assertthat
 Source: CRAN
 Version: 0.2.0
@@ -73,6 +83,12 @@ Source: CRAN
 Version: 1.0-6
 Hash: 931f9972deae0f205e1c78a51f33149b
 
+Package: callr
+Source: CRAN
+Version: 2.0.2
+Hash: 693b22054c5ca1edcb771a080c376349
+Requires: R6, assertthat, crayon, debugme, testthat
+
 Package: cli
 Source: CRAN
 Version: 1.0.0
@@ -93,6 +109,11 @@ Package: colorspace
 Source: CRAN
 Version: 1.3-2
 Hash: 0bf8618b585fa98eb23414cd3ab95118
+
+Package: commonmark
+Source: CRAN
+Version: 1.4
+Hash: 91d7807331a4a37ef8376fb073960ee4
 
 Package: crayon
 Source: CRAN
@@ -115,11 +136,24 @@ Version: 0.7.4
 Hash: f262d69464ba399591592d096a352669
 Requires: DiagrammeR, R6, stringr
 
+Package: debugme
+Source: CRAN
+Version: 1.1.0
+Hash: c233690edd9fa17a63f7c8d83c1ca153
+Requires: crayon
+
 Package: desc
 Source: CRAN
 Version: 1.1.1
 Hash: 2f99e95211c4ba6efcf5538d096587fc
 Requires: R6, assertthat, crayon, rprojroot
+
+Package: devtools
+Source: CRAN
+Version: 1.13.5
+Hash: 80061b2ad6853fd3665bf883123a1b1a
+Requires: digest, git2r, httr, jsonlite, memoise, rstudioapi, whisker,
+    withr
 
 Package: dichromat
 Source: CRAN
@@ -155,6 +189,12 @@ Version: 0.10.1
 Hash: 54d95f4ec6d0300100413ed0127d89ae
 Requires: stringr
 
+Package: fs
+Source: CRAN
+Version: 1.1.0
+Hash: 037d21d4569bf34af62ef1bcb9581db9
+Requires: Rcpp
+
 Package: ggplot2
 Source: CRAN
 Version: 2.2.1
@@ -187,6 +227,11 @@ Package: gtable
 Source: CRAN
 Version: 0.2.0
 Hash: cd78381a9d3fea966ac39bd0daaf5554
+
+Package: highlight
+Source: CRAN
+Version: 0.4.7.2
+Hash: 829e60dc007d762127c653343dc6bfcf
 
 Package: highr
 Source: CRAN
@@ -271,6 +316,12 @@ Version: 0.8
 Hash: 045d7c594d503b41f1c28946d076c8aa
 Requires: mime
 
+Package: memoise
+Source: CRAN
+Version: 1.1.0
+Hash: 410fcd334bc626db100237cc1370f2e9
+Requires: digest
+
 Package: mime
 Source: CRAN
 Version: 0.5
@@ -298,10 +349,42 @@ Version: 1.2.0
 Hash: dc497e1102cdf746b8c2a0310258c6c5
 Requires: cli, crayon, rlang, utf8
 
+Package: pkgbuild
+Source: github
+Version: 0.0.0.9000
+Hash: 437413af77c615d2b5aad2790036fca8
+Requires: R6, callr, crayon, desc, rprojroot, withr
+GithubRepo: pkgbuild
+GithubUsername: r-lib
+GithubRef: master
+GithubSha1: 2a0683944c85d9fcdac60b371c800a149029d7dc
+
 Package: pkgconfig
 Source: CRAN
 Version: 2.0.1
 Hash: 0dda4a2654a22b36a715c2b0b6fbacac
+
+Package: pkgdown
+Source: github
+Version: 0.1.0.9000
+Hash: 94c964f67cc54fa644be7373ee6c28c2
+Requires: R6, ansistrings, callr, cli, crayon, desc, digest, evaluate,
+    fs, highlight, httr, magrittr, memoise, pkgload, purrr, rematch,
+    rlang, rmarkdown, roxygen2, rstudioapi, tibble, whisker, xml2, yaml
+GithubRepo: pkgdown
+GithubUsername: r-lib
+GithubRef: master
+GithubSha1: 3477c304b532d15451f037c8dc8181caaa7dc8f8
+
+Package: pkgload
+Source: github
+Version: 0.0.0.9000
+Hash: 60d5971217e019dfb272c874a99f9da0
+Requires: desc, pkgbuild, rlang, rprojroot, rstudioapi, withr
+GithubRepo: pkgload
+GithubUsername: r-lib
+GithubRef: master
+GithubSha1: 884e79d6131ee386ac5e21b3c1d5fbafe2acbdde
 
 Package: plogr
 Source: CRAN
@@ -314,6 +397,11 @@ Version: 1.8.4
 Hash: 02588dd72bf343b964fa2fe450e0cf96
 Requires: Rcpp
 
+Package: praise
+Source: CRAN
+Version: 1.0.0
+Hash: 77da8f1df873a4b91e5c4a68fe2fb1b6
+
 Package: purrr
 Source: CRAN
 Version: 0.2.4
@@ -325,6 +413,11 @@ Source: CRAN
 Version: 1.1.1
 Hash: ca8420d2c9d884b0a42ee271d21d7cd3
 Requires: BH, R6, Rcpp, hms, tibble
+
+Package: rematch
+Source: CRAN
+Version: 1.0.1
+Hash: ad4faf59e7611117ff165817074c50c7
 
 Package: rematch2
 Source: CRAN
@@ -345,9 +438,13 @@ Hash: c1658eebadcdd6c354a013feea30ce94
 Requires: Rook, XML, igraph
 
 Package: rlang
-Source: CRAN
-Version: 0.2.0
-Hash: 647e2e50a72557d1a770dcd6701e562b
+Source: github
+Version: 0.2.0.9000
+Hash: 3100979f1a5c26090d2cc1332cef6560
+GithubRepo: rlang
+GithubUsername: tidyverse
+GithubRef: master
+GithubSha1: 3143f00e18cedb31dbf882b4d009f47c0c699f3c
 
 Package: rlist
 Source: CRAN
@@ -361,6 +458,13 @@ Version: 1.8
 Hash: 2a7842e3cee62a79dd737d17e9e9d86b
 Requires: base64enc, evaluate, htmltools, jsonlite, knitr, mime,
     rprojroot, stringr, yaml
+
+Package: roxygen2
+Source: CRAN
+Version: 6.0.1
+Hash: 4436b7a0351046d4144ad6587081a660
+Requires: R6, Rcpp, brew, commonmark, desc, digest, stringi, stringr,
+    xml2
 
 Package: rprojroot
 Source: CRAN
@@ -409,6 +513,12 @@ Version: 1.0.0
 Hash: 98ff4c0290ebc930d7d256df8f35a567
 Requires: backports, cli, enc, magrittr, purrr, rematch2, rlang,
     rprojroot, tibble, withr
+
+Package: testthat
+Source: CRAN
+Version: 2.0.0
+Hash: 537114b476376c5773bf3c557f5bbd19
+Requires: R6, cli, crayon, digest, magrittr, praise, rlang, withr
 
 Package: tibble
 Source: CRAN
@@ -464,9 +574,13 @@ Version: 0.3-2
 Hash: 803d662762e532705c2c066a82d066e7
 
 Package: withr
-Source: CRAN
-Version: 2.1.1
-Hash: a86856ae0b4a7c3daf9a3ef0097a403b
+Source: github
+Version: 2.1.1.9000
+Hash: b27c9b17ee3efeb723fbfd95a47a7b78
+GithubRepo: withr
+GithubUsername: r-lib
+GithubRef: master
+GithubSha1: 5d0557150e8f6347b4110be53fe17b1668e93b46
 
 Package: xml2
 Source: CRAN
